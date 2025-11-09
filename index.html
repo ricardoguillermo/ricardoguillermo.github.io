@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Guía Virtual - La Floresta</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100vh;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+      // --- FASE 1: TUS DATOS (PUNTOS DE INTERÉS) ---
+      // Aquí es donde pones tus coordenadas y reseñas.
+      // He usado el formato GeoJSON que te recomendé.
+      const misPuntos = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              // ¡IMPORTANTE! Reemplaza esto con tus coordenadas
+              coordinates: [-55.677874536889675, -34.76094347598904],
+            },
+            properties: {
+              id: "poi_1",
+              nombre: "Hotel La Floresta",
+              descripcion:
+                "El icónico Ex-Hotel La Floresta es el símbolo del balneario...",
+              audio: "audio/hotel.mp3",
+              orden: 1,
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              // ¡IMPORTANTE! Reemplaza esto con tus coordenadas
+              coordinates: [-55.67480651313868, -34.75741890973529], // [Longitud, Latitud]
+            },
+            properties: {
+              id: "poi_2",
+              nombre: "Country Club",
+              descripcion:
+                "El Country Club es el corazón recreativo y deportivo de La Floresta. Esta zona ...",
+              audio: "audio/country.mp3",
+              orden: 2,
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              // ¡IMPORTANTE! Reemplaza esto con tus coordenadas
+              coordinates: [-55.67574992051011, -34.75374934645494], // [Longitud, Latitud]
+            },
+            properties: {
+              id: "poi_3",
+              nombre: "Plaza 33",
+              descripcion:
+                "La Plaza 33 es un espacio público que fomenta la convivencia y el esparcimiento.",
+              audio: "audio/plaza33.mp3",
+              orden: 3,
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              // ¡IMPORTANTE! Reemplaza esto con tus coordenadas
+              coordinates: [-55.668644494635636, -34.75719219349257], // [Longitud, Latitud]
+            },
+            properties: {
+              id: "poi_4",
+              nombre: "Plaza Salvador García Pintos",
+              descripcion:
+                " Inaugurada en 2021, esta plaza es un ejemplo de transformación. Lo que antiguamente era un basural, hoy es un espacio público renovado y lleno de vida. ",
+              audio: "audio/plazaSalvador.mp3",
+              orden: 4,
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              // ¡IMPORTANTE! Reemplaza esto con tus coordenadas
+              coordinates: [-55.667910491734084, -34.75958472020964], // [Longitud, Latitud]
+            },
+            properties: {
+              id: "poi_5",
+              nombre: "Plazoleta del Leonismo",
+              descripcion:
+                "Esta plazoleta es un homenaje a los valores del Club de Leones (Leonismo) y su servicio ...",
+              audio: "audio/plazaleonismo.mp3",
+              orden: 5,
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              // ¡IMPORTANTE! Reemplaza esto con tus coordenadas
+              coordinates: [-55.673522605168316, -34.7595672510129], // [Longitud, Latitud]
+            },
+            properties: {
+              id: "poi_6",
+              nombre: "Plaza Artigas",
+              descripcion:
+                "Como en la mayoría de las localidades uruguayas, esta plaza rinde homenaje al Prócer de la Pátria ...",
+              audio: "audio/plazaartigas.mp3",
+              orden: 6,
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              // ¡IMPORTANTE! Reemplaza esto con tus coordenadas
+              coordinates: [-55.67520041687363, -34.75938912256196], // [Longitud, Latitud]
+            },
+            properties: {
+              id: "poi_7",
+              nombre: "Plaza Don Orione",
+              descripcion:
+                "Esta plaza toma su nombre en honor a San Luis Orione, fundador del Movimiento Orionita...",
+              audio: "audio/plazaorione.mp3",
+              orden: 7,
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              // ¡IMPORTANTE! Reemplaza esto con tus coordenadas
+              coordinates: [-55.67574879662696, -34.76037254637836], // [Longitud, Latitud]
+            },
+            properties: {
+              id: "poi_8",
+              nombre: "Plaza Zorrilla de San Martín",
+              descripcion:
+                "Dedicada al 'Poeta de la Patria', Juan Zorrilla de San Martín. Este espacio rinde tributo a su monumental obra literaria",
+              audio: "audio/plazazorrilla.mp3",
+              orden: 8,
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              // ¡IMPORTANTE! Reemplaza esto con tus coordenadas
+              coordinates: [-55.67690120312782, -34.76062577419499], // [Longitud, Latitud]
+            },
+            properties: {
+              id: "poi_9",
+              nombre: "Plaza Liga de Fomento",
+              descripcion:
+                "Este espacio celebra el espíritu cívico de la Liga de Fomento de La Floresta.",
+              audio: "audio/plazaligafomento.mp3",
+              orden: 9,
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              // ¡IMPORTANTE! Reemplaza esto con tus coordenadas
+              coordinates: [-55.680042668032684, -34.75882526846987], // [Longitud, Latitud]
+            },
+            properties: {
+              id: "poi_10",
+              nombre: "Plaza Lavalleja",
+              descripcion:
+                "Esta plaza honra la memoria de Juan Antonio Lavalleja, líder de los Treinta y Tres Orientales. Es un espacio que ...",
+              audio: "audio/plazalavalleja.mp3",
+              orden: 10,
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              // ¡IMPORTANTE! Reemplaza esto con tus coordenadas
+              coordinates: [-55.68000110452356, -34.752043461814516], // [Longitud, Latitud]
+            },
+            properties: {
+              id: "poi_11",
+              nombre: "Plaza Zabala",
+              descripcion:
+                "Un rincón que recuerda al fundador de Montevideo, Bruno Mauricio de Zabala. Esta plaza conecta al ...",
+              audio: "audio/plazazabala.mp3",
+              orden: 11,
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              // ¡IMPORTANTE! Reemplaza esto con tus coordenadas
+              coordinates: [-55.676521832650906, -34.75779537345324], // [Longitud, Latitud]
+            },
+            properties: {
+              id: "poi_12",
+              nombre: "Plaza Rivera",
+              descripcion:
+                "Dedicada a Fructuoso Rivera, primer presidente constitucional de Uruguay y figura clave en los primeros años de la República.",
+              audio: "audio/plazarivera.mp3",
+              orden: 12,
+            },
+          },
+
+          // ... Agrega aquí tus otros 10 puntos ...
+        ],
+      };
+
+      // --- FASE 2: EL MAPA (LEAFLET) ---
+
+      // 1. Inicializar el mapa
+      // Centramos el mapa en La Floresta (ajusta estas coordenadas si es necesario)
+      const map = L.map("map").setView([-34.757, -55.665], 16);
+
+      // 2. Cargar el mapa base (OpenStreetMap)
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "© OpenStreetMap",
+      }).addTo(map);
+
+      // Un objeto para guardar nuestros marcadores y poder llamarlos
+      let marcadoresLeaflet = {};
+
+      // 3. Agregar tus puntos (POIs) al mapa
+      L.geoJSON(misPuntos, {
+        onEachFeature: function (feature, layer) {
+          // Esto crea el popup usando la información de tus datos
+          const popupContent = `<b>${feature.properties.nombre}</b><br>${feature.properties.descripcion}`;
+          layer.bindPopup(popupContent);
+          // Guardamos el marcador (layer) usando su ID como llave
+          marcadoresLeaflet[feature.properties.id] = layer;
+        },
+      }).addTo(map);
+
+      // --- FASE 3: GEOLOCALIZACIÓN EN TIEMPO REAL ---
+
+      let marcadorUsuario = null; // Variable para guardar nuestro marcador
+
+      // 1. Opciones para la geolocalización
+      const opcionesGeo = {
+        enableHighAccuracy: true, // Pedir la máxima precisión posible
+        timeout: 10000, // Tiempo máximo de espera (10 seg)
+        maximumAge: 0, // No usar una ubicación "cacheada"
+      };
+
+      // 2. Comprobar si el navegador soporta Geolocation
+      if ("geolocation" in navigator) {
+        console.log("Geolocalización soportada. Iniciando...");
+
+        // 3. Iniciar el "seguimiento" de la posición
+        // 'watchPosition' se ejecuta CADA VEZ que el usuario se mueve
+        navigator.geolocation.watchPosition(
+          onUbicacionCorrecta,
+          onUbicacionError,
+          opcionesGeo
+        );
+      } else {
+        alert(
+          "Tu navegador no soporta Geolocalización. Esta aplicación no funcionará."
+        );
+      }
+
+      // 4. Función que se ejecuta cuando OBTENEMOS la ubicación
+      function onUbicacionCorrecta(e) {
+        const lat = e.coords.latitude;
+        const lon = e.coords.longitude;
+        const precision = e.coords.accuracy;
+
+        console.log(
+          `Nueva ubicación: ${lat}, ${lon} (Precisión: ${precision}m)`
+        );
+
+        // Centrar el mapa en el usuario la primera vez
+        if (marcadorUsuario == null) {
+          map.setView([lat, lon], 17); // Nivel de zoom más cercano
+        }
+
+        // Crear o actualizar el marcador del usuario
+        if (marcadorUsuario) {
+          // Si ya existe, solo movemos el marcador
+          marcadorUsuario.setLatLng([lat, lon]);
+        } else {
+          // Si no existe, lo creamos
+          // Usamos un 'CircleMarker' para que se vea como un punto azul
+          marcadorUsuario = L.circleMarker([lat, lon], {
+            color: "#007bff", // Color del borde
+            fillColor: "#007bff", // Color de relleno
+            fillOpacity: 0.5,
+            radius: 8,
+          }).addTo(map);
+        }
+        // ... (aquí está tu código para actualizar el 'marcadorUsuario')
+
+        // --- ¡LÍNEA NUEVA! ---
+        // Ahora, revisamos la proximidad con esta nueva ubicación
+        revisarProximidad(lat, lon);
+    } // <-- Esta es la llave de cierre de onUbicacionCorrecta
+      
+
+      // 5. Función que se ejecuta si hay un ERROR
+      function onUbicacionError(error) {
+        console.error("Error al obtener la ubicación: " + error.message);
+        // Errores comunes:
+        // error.PERMISSION_DENIED - El usuario bloqueó el permiso
+        // error.POSITION_UNAVAILABLE - GPS/Red no disponible
+        // error.TIMEOUT - Se agotó el tiempo de espera
+        if (error.code == error.PERMISSION_DENIED) {
+          alert(
+            "Permiso de ubicación denegado. Recarga la página y acepta para continuar."
+          );
+        }
+      }
+
+
+      // --- FASE 4: LÓGICA DE PROXIMIDAD ---
+
+        // ¿A qué distancia (en metros) queremos activar el punto?
+        // Para probar en PC, pon un valor alto (ej: 10000).
+        // Para la vida real, un valor bueno es entre 20 y 30 metros.
+        const radioActivacion = 10000; // <-- ¡VALOR ALTO PARA PRUEBAS EN PC!
+
+        // Función que revisa si estamos cerca de algún punto
+        function revisarProximidad(lat, lon) {
+            
+            const miPosicion = L.latLng(lat, lon);
+
+            // 1. Recorremos TODOS nuestros puntos de interés
+            for (const feature of misPuntos.features) {
+                
+                // 2. Comprobar si este punto ya fue visitado
+                if (!feature.properties.visitado) {
+                    
+                    const coordsPunto = feature.geometry.coordinates;
+                    const posPunto = L.latLng(coordsPunto[1], coordsPunto[0]); // Ojo: Lat, Lon
+
+                    // 3. Calcular la distancia
+                    const distancia = map.distance(miPosicion, posPunto);
+
+                    // 4. ¡COMPROBAR LA PROXIMIDAD!
+                    if (distancia < radioActivacion) {
+                        console.log(`¡CERCA DE ${feature.properties.nombre}!`);
+                        activarPunto(feature);
+                    }
+                }
+            }
+        }
+
+        // Función que se dispara UNA VEZ por punto
+        function activarPunto(feature) {
+            
+            // 1. Marcar como visitado para que no se repita
+            feature.properties.visitado = true;
+
+            const id = feature.properties.id;
+            const nombre = feature.properties.nombre;
+            const audioFile = feature.properties.audio;
+
+            // 2. Abrir el Popup
+            const marcador = marcadoresLeaflet[id];
+            if (marcador) {
+                marcador.openPopup();
+            }
+
+            // 3. Reproducir el Audio
+            // (Asegúrate de tener una carpeta "audio" con los archivos .mp3)
+            console.log(`Reproduciendo: ${audioFile}`);
+            try {
+                let audio = new Audio(audioFile);
+                audio.play();
+            } catch (e) {
+                console.error("Error al reproducir el audio: ", e);
+            }
+
+            // 4. (Fase 5) Avisar cuál es el siguiente punto
+            const siguientePunto = encontrarSiguientePunto(feature.properties.orden);
+            if (siguientePunto) {
+                console.log(`Siguiente punto: ${siguientePunto.properties.nombre}`);
+                // Aquí podrías agregar una línea en el mapa, etc.
+            }
+        }
+
+        // (Fase 5) Función de ayuda para encontrar el siguiente POI
+        function encontrarSiguientePunto(ordenActual) {
+            const siguienteOrden = ordenActual + 1;
+            return misPuntos.features.find(f => f.properties.orden === siguienteOrden);
+        }
+    </script>
+  </body>
+</html>
