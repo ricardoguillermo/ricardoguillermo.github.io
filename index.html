@@ -10,9 +10,12 @@
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
+
     <!-- Font Awesome para iconos bonitos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
 
     <style>
       body {
@@ -23,13 +26,13 @@
         height: 100vh;
         width: 100%;
       }
-      
+
       /* Estilos para iconos personalizados */
       .custom-div-icon {
         background: transparent;
         border: none;
       }
-      
+
       .poi-icon {
         width: 30px;
         height: 30px;
@@ -39,23 +42,23 @@
         justify-content: center;
         font-size: 14px;
         color: white;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         border: 2px solid white;
       }
-      
+
       /* Iconos por categoría */
       .icon-plaza {
         background: linear-gradient(135deg, #2ecc71, #27ae60);
       }
-      
+
       .icon-club {
         background: linear-gradient(135deg, #3498db, #2980b9);
       }
-      
+
       .icon-hotel {
         background: linear-gradient(135deg, #e74c3c, #c0392b);
       }
-      
+
       .icon-default {
         background: linear-gradient(135deg, #9b59b6, #8e44ad);
       }
@@ -283,30 +286,34 @@
       // Función para determinar el icono basado en el nombre del punto
       function obtenerIconoPorNombre(nombre) {
         const nombreLower = nombre.toLowerCase();
-        
-        if (nombreLower.startsWith('pla')) {
+
+        if (nombreLower.startsWith("pla")) {
           return {
-            className: 'icon-plaza',
-            iconClass: 'fas fa-tree', // Icono de árbol para plazas
-            title: 'Plaza'
+            className: "icon-plaza",
+            iconClass: "fas fa-tree", // Icono de árbol para plazas
+            title: "Plaza",
           };
-        } else if (nombreLower.startsWith('clu') || nombreLower.includes('club') || nombreLower.includes('country')) {
+        } else if (
+          nombreLower.startsWith("clu") ||
+          nombreLower.includes("club") ||
+          nombreLower.includes("country")
+        ) {
           return {
-            className: 'icon-club',
-            iconClass: 'fas fa-users', // Icono de personas para clubes
-            title: 'Club/Institución Recreativa'
+            className: "icon-club",
+            iconClass: "fas fa-users", // Icono de personas para clubes
+            title: "Club/Institución Recreativa",
           };
-        } else if (nombreLower.includes('hotel')) {
+        } else if (nombreLower.includes("hotel")) {
           return {
-            className: 'icon-hotel',
-            iconClass: 'fas fa-bed', // Icono de cama para hoteles
-            title: 'Hotel'
+            className: "icon-hotel",
+            iconClass: "fas fa-bed", // Icono de cama para hoteles
+            title: "Hotel",
           };
         } else {
           return {
-            className: 'icon-default',
-            iconClass: 'fas fa-map-marker-alt', // Icono genérico
-            title: 'Punto de Interés'
+            className: "icon-default",
+            iconClass: "fas fa-map-marker-alt", // Icono genérico
+            title: "Punto de Interés",
           };
         }
       }
@@ -314,15 +321,15 @@
       // Función para crear icono personalizado
       function crearIconoPersonalizado(nombre) {
         const tipoIcon = obtenerIconoPorNombre(nombre);
-        
+
         return L.divIcon({
-          className: 'custom-div-icon',
+          className: "custom-div-icon",
           html: `<div class="poi-icon ${tipoIcon.className}" title="${tipoIcon.title}">
                    <i class="${tipoIcon.iconClass}"></i>
                  </div>`,
           iconSize: [30, 30],
           iconAnchor: [15, 15],
-          popupAnchor: [0, -15]
+          popupAnchor: [0, -15],
         });
       }
 
@@ -331,9 +338,11 @@
 
       // 3. Agregar tus puntos (POIs) al mapa
       L.geoJSON(misPuntos, {
-        pointToLayer: function(feature, latlng) {
+        pointToLayer: function (feature, latlng) {
           // Crear marcador con icono personalizado basado en el nombre
-          const iconoPersonalizado = crearIconoPersonalizado(feature.properties.nombre);
+          const iconoPersonalizado = crearIconoPersonalizado(
+            feature.properties.nombre
+          );
           return L.marker(latlng, { icon: iconoPersonalizado });
         },
         onEachFeature: function (feature, layer) {
@@ -345,9 +354,52 @@
         },
       }).addTo(map);
 
+      // --- FUNCIÓN NUEVA: DIBUJAR RUTA ---
+
+        function dibujarRutaCompleta() {
+            // 1. Ordenar los puntos según la propiedad "orden"
+            const puntosOrdenados = misPuntos.features.sort((a, b) => {
+                return a.properties.orden - b.properties.orden;
+            });
+
+            // 2. Extraer solo las coordenadas [lat, lon]
+            const coordenadasRuta = puntosOrdenados.map(feature => {
+                // De nuevo, [lon, lat] -> [lat, lon] para Leaflet
+                return [feature.geometry.coordinates[1], feature.geometry.coordinates[0]];
+            });
+
+            // 3. Dibujar la línea (Polyline)
+            L.polyline(coordenadasRuta, {
+                color: '#3388ff', // Color azul
+                weight: 3,
+                opacity: 0.7,
+                dashArray: '5, 10' // Línea punteada
+            }).addTo(map);
+        }
+
+        // ¡Y llamamos a la función para que se ejecute!
+        dibujarRutaCompleta();
+
+        // --- FUNCIÓN NUEVA: SINTETIZADOR DE VOZ ---
+        function hablarTexto(texto) {
+            console.log(`Hablando: ${texto}`);
+            try {
+                // Detener cualquier voz que esté sonando antes
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(texto);
+                utterance.lang = 'es-UY'; // Español de Uruguay
+                window.speechSynthesis.speak(utterance);
+                
+            } catch (e) {
+                console.error("Error al sintetizar la voz: ", e);
+            }
+        }
+
       // --- FASE 3: GEOLOCALIZACIÓN EN TIEMPO REAL ---
 
       let marcadorUsuario = null; // Variable para guardar nuestro marcador
+      let posicionActualUsuario = null; // <-- ¡NUEVA LÍNEA!
 
       // 1. Opciones para la geolocalización
       const opcionesGeo = {
@@ -377,6 +429,9 @@
       function onUbicacionCorrecta(e) {
         const lat = e.coords.latitude;
         const lon = e.coords.longitude;
+
+        posicionActualUsuario = L.latLng(lat, lon); // <-- ¡NUEVA LÍNEA!
+
         const precision = e.coords.accuracy;
 
         console.log(
@@ -391,7 +446,7 @@
         // Crear o actualizar el marcador del usuario
         if (marcadorUsuario) {
           // Si ya existe, solo movemos el marcador
-          marcadorUsuario.setLatLng([lat, lon]);
+          marcadorUsuario.setLatLng(posicionActualUsuario); // <-- ¡LÍNEA MODIFICADA!
         } else {
           // Si no existe, lo creamos
           // Usamos un 'CircleMarker' para que se vea como un punto azul
@@ -407,8 +462,7 @@
         // --- ¡LÍNEA NUEVA! ---
         // Ahora, revisamos la proximidad con esta nueva ubicación
         revisarProximidad(lat, lon);
-    } // <-- Esta es la llave de cierre de onUbicacionCorrecta
-      
+      } // <-- Esta es la llave de cierre de onUbicacionCorrecta
 
       // 5. Función que se ejecuta si hay un ERROR
       function onUbicacionError(error) {
@@ -424,44 +478,44 @@
         }
       }
 
-
       // --- FASE 4: LÓGICA DE PROXIMIDAD ---
 
-        // ¿A qué distancia (en metros) queremos activar el punto?
-        // Para probar en PC, pon un valor alto (ej: 10000).
-        // Para la vida real, un valor bueno es entre 20 y 30 metros.
-        const radioActivacion = 30; // <-- ¡VALOR ALTO PARA PRUEBAS EN PC!
+      // ¿A qué distancia (en metros) queremos activar el punto?
+      // Para probar en PC, pon un valor alto (ej: 10000).
+      // Para la vida real, un valor bueno es entre 20 y 30 metros.
+      const radioActivacion = 30; // <-- ¡VALOR ALTO PARA PRUEBAS EN PC!
 
-        // Función que revisa si estamos cerca de algún punto
-        function revisarProximidad(lat, lon) {
-            
-            const miPosicion = L.latLng(lat, lon);
+      // Función que revisa si estamos cerca de algún punto
+      function revisarProximidad(lat, lon) {
+        const miPosicion = L.latLng(lat, lon);
 
-            // 1. Recorremos TODOS nuestros puntos de interés
-            for (const feature of misPuntos.features) {
-                
-                // 2. Comprobar si este punto ya fue visitado
-                if (!feature.properties.visitado) {
-                    
-                    const coordsPunto = feature.geometry.coordinates;
-                    const posPunto = L.latLng(coordsPunto[1], coordsPunto[0]); // Ojo: Lat, Lon
+        // 1. Recorremos TODOS nuestros puntos de interés
+        for (const feature of misPuntos.features) {
+          // 2. Comprobar si este punto ya fue visitado
+          if (!feature.properties.visitado) {
+            const coordsPunto = feature.geometry.coordinates;
+            const posPunto = L.latLng(coordsPunto[1], coordsPunto[0]); // Ojo: Lat, Lon
 
-                    // 3. Calcular la distancia
-                    const distancia = map.distance(miPosicion, posPunto);
+            // 3. Calcular la distancia
+            const distancia = map.distance(miPosicion, posPunto);
 
-                    // 4. ¡COMPROBAR LA PROXIMIDAD!
-                    if (distancia < radioActivacion) {
-                        console.log(`¡CERCA DE ${feature.properties.nombre}!`);
-                        activarPunto(feature);
-                    }
-                }
+            // 4. ¡COMPROBAR LA PROXIMIDAD!
+            if (distancia < radioActivacion) {
+              console.log(`¡CERCA DE ${feature.properties.nombre}!`);
+              activarPunto(feature);
             }
+          }
         }
+      }
 
-        // Función que se dispara UNA VEZ por punto
+   // --- FASE 4: LÓGICA DE PROXIMIDAD (MODIFICADA) ---
+        // ... (Aquí está tu variable 'radioActivacion') ...
+        // ... (Aquí está tu función 'revisarProximidad') ...
+
+        // ¡FUNCIÓN 'activarPunto' ACTUALIZADA!
         function activarPunto(feature) {
             
-            // 1. Marcar como visitado para que no se repita
+            // 1. Marcar como visitado
             feature.properties.visitado = true;
 
             const id = feature.properties.id;
@@ -474,29 +528,59 @@
                 marcador.openPopup();
             }
 
-            // 3. Reproducir el Audio
-            // (Asegúrate de tener una carpeta "audio" con los archivos .mp3)
+            // 3. Reproducir el Audio de la reseña
             console.log(`Reproduciendo: ${audioFile}`);
             try {
                 let audio = new Audio(audioFile);
                 audio.play();
+
+                // --- ¡NUEVA LÓGICA! ---
+                // Cuando el audio de la reseña TERMINE...
+                audio.onended = () => {
+                    // 4. ...Buscamos el siguiente punto
+                    anunciarSiguientePunto(feature.properties.orden);
+                };
+
             } catch (e) {
                 console.error("Error al reproducir el audio: ", e);
-            }
-
-            // 4. (Fase 5) Avisar cuál es el siguiente punto
-            const siguientePunto = encontrarSiguientePunto(feature.properties.orden);
-            if (siguientePunto) {
-                console.log(`Siguiente punto: ${siguientePunto.properties.nombre}`);
-                // Aquí podrías agregar una línea en el mapa, etc.
+                // Si el audio falla, anunciamos el siguiente punto igualmente
+                anunciarSiguientePunto(feature.properties.orden);
             }
         }
 
-        // (Fase 5) Función de ayuda para encontrar el siguiente POI
+        // ¡FUNCIÓN 'anunciarSiguientePunto' NUEVA!
+        function anunciarSiguientePunto(ordenActual) {
+            const siguientePunto = encontrarSiguientePunto(ordenActual);
+            
+            if (siguientePunto && posicionActualUsuario) {
+                const nombreSiguiente = siguientePunto.properties.nombre;
+
+                // Calcular la distancia desde el usuario al siguiente punto
+                const posSiguiente = L.latLng(
+                    siguientePunto.geometry.coordinates[1], // lat
+                    siguientePunto.geometry.coordinates[0]  // lon
+                );
+                
+                const distancia = map.distance(posicionActualUsuario, posSiguiente);
+                const distanciaRedondeada = Math.round(distancia); // en metros
+
+                // Crear el texto del anuncio
+                const textoAnuncio = `Siguiente parada: ${nombreSiguiente}. Se encuentra a ${distanciaRedondeada} metros.`;
+
+                // Usar la voz del navegador
+                hablarTexto(textoAnuncio);
+            } else if (!siguientePunto) {
+                // Es el último punto
+                hablarTexto("Has completado el recorrido. ¡Gracias por visitarnos!");
+            }
+        }
+
+        // (Fase 5) Función de ayuda (ya la tenías)
         function encontrarSiguientePunto(ordenActual) {
             const siguienteOrden = ordenActual + 1;
             return misPuntos.features.find(f => f.properties.orden === siguienteOrden);
         }
+      
     </script>
   </body>
 </html>
