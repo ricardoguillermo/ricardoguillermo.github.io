@@ -115,7 +115,7 @@
         ⬆️ ⬇️ ⬅️ ➡️ (≈5m cada clic)
       </div>
       <div class="testing-instructions">
-        <small>🔊 Audio: MP3 o voz sintética</small>
+        <small>🔊 Audio: 👨 Hombre (descripción) + 👩 Mujer (navegación)</small>
       </div>
       <div id="testing-status" class="testing-status" style="display: none;">
         ✅ Modo Testing Activo
@@ -435,21 +435,115 @@
         // ¡Y llamamos a la función para que se ejecute!
         dibujarRutaCompleta();
 
-        // --- FUNCIÓN NUEVA: SINTETIZADOR DE VOZ ---
-        function hablarTexto(texto) {
-            console.log(`Hablando: ${texto}`);
+        // --- FUNCIÓN NUEVA: SINTETIZADOR DE VOZ AVANZADO ---
+        
+        let vocesDisponibles = [];
+        let vozMasculina = null;
+        let vozFemenina = null;
+        
+        // Cargar voces disponibles
+        function cargarVoces() {
+            vocesDisponibles = speechSynthesis.getVoices();
+            console.log("🎭 Voces disponibles:", vocesDisponibles.length);
+            
+            // Buscar voces en español
+            const vocesEspanol = vocesDisponibles.filter(voz => 
+                voz.lang.startsWith('es') || voz.name.toLowerCase().includes('spanish')
+            );
+            
+            // Intentar encontrar voces por género
+            vozFemenina = vocesEspanol.find(voz => 
+                voz.name.toLowerCase().includes('female') ||
+                voz.name.toLowerCase().includes('mujer') ||
+                voz.name.toLowerCase().includes('woman') ||
+                voz.name.toLowerCase().includes('maria') ||
+                voz.name.toLowerCase().includes('carmen') ||
+                voz.name.toLowerCase().includes('lucia') ||
+                voz.name.toLowerCase().includes('microsoft zira') ||
+                voz.name.toLowerCase().includes('google female')
+            );
+            
+            vozMasculina = vocesEspanol.find(voz => 
+                voz.name.toLowerCase().includes('male') ||
+                voz.name.toLowerCase().includes('hombre') ||
+                voz.name.toLowerCase().includes('man') ||
+                voz.name.toLowerCase().includes('carlos') ||
+                voz.name.toLowerCase().includes('diego') ||
+                voz.name.toLowerCase().includes('microsoft pablo') ||
+                voz.name.toLowerCase().includes('google male')
+            ) || vocesEspanol[0]; // Fallback a la primera voz en español
+            
+            // Si no encontramos voz femenina, usar cualquier voz diferente a la masculina
+            if (!vozFemenina && vocesEspanol.length > 1) {
+                vozFemenina = vocesEspanol.find(voz => voz !== vozMasculina) || vocesEspanol[0];
+            }
+            
+            // Fallback: usar la primera voz disponible
+            if (!vozMasculina) vozMasculina = vocesDisponibles[0];
+            if (!vozFemenina) vozFemenina = vocesDisponibles[1] || vocesDisponibles[0];
+            
+            console.log("👨 Voz masculina (descripciones):", vozMasculina?.name || "No encontrada");
+            console.log("👩 Voz femenina (navegación):", vozFemenina?.name || "No encontrada");
+        }
+        
+        // Función de síntesis de voz mejorada
+        function hablarTexto(texto, usarVozFemenina = false) {
+            console.log(`🗣️ Hablando (${usarVozFemenina ? 'Voz femenina' : 'Voz masculina'}): ${texto}`);
+            
+            if (!('speechSynthesis' in window)) {
+                console.log("❌ Síntesis de voz no disponible");
+                return;
+            }
+            
             try {
                 // Detener cualquier voz que esté sonando antes
-                window.speechSynthesis.cancel();
+                speechSynthesis.cancel();
                 
                 const utterance = new SpeechSynthesisUtterance(texto);
-                utterance.lang = 'es-UY'; // Español de Uruguay
-                window.speechSynthesis.speak(utterance);
+                
+                // Seleccionar voz según el tipo de mensaje
+                const vozSeleccionada = usarVozFemenina ? vozFemenina : vozMasculina;
+                if (vozSeleccionada) {
+                    utterance.voice = vozSeleccionada;
+                    utterance.lang = vozSeleccionada.lang;
+                } else {
+                    utterance.lang = 'es-ES';
+                }
+                
+                // Configurar parámetros según el tipo de voz
+                if (usarVozFemenina) {
+                    // Voz femenina para navegación: más clara y directiva
+                    utterance.rate = 1.0;
+                    utterance.pitch = 1.1;
+                    utterance.volume = 0.9;
+                } else {
+                    // Voz masculina para descripciones: más pausada y descriptiva
+                    utterance.rate = 0.9;
+                    utterance.pitch = 1.0;
+                    utterance.volume = 0.8;
+                }
+                
+                utterance.onerror = (event) => {
+                    console.error("Error en síntesis de voz:", event.error);
+                };
+                
+                speechSynthesis.speak(utterance);
                 
             } catch (e) {
                 console.error("Error al sintetizar la voz: ", e);
             }
         }
+        
+        // Función específica para navegación (usa voz femenina)
+        function anunciarNavegacion(texto) {
+            hablarTexto(texto, true); // true = usar voz femenina
+        }
+        
+        // Cargar voces cuando estén disponibles
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = cargarVoces;
+        }
+        setTimeout(cargarVoces, 100); // Fallback por si no se dispara el evento
 
       // --- FASE 3: GEOLOCALIZACIÓN EN TIEMPO REAL ---
 
@@ -745,27 +839,16 @@
             
             if ('speechSynthesis' in window) {
                 const texto = `Has llegado a ${nombre}. ${descripcion}`;
-                const utterance = new SpeechSynthesisUtterance(texto);
                 
-                // Configurar la voz en español
-                utterance.lang = 'es-ES';
-                utterance.rate = 0.9; // Velocidad
-                utterance.pitch = 1; // Tono
-                utterance.volume = 0.8; // Volumen
+                // Usar voz masculina para las descripciones
+                hablarTexto(texto, false); // false = voz masculina
                 
-                utterance.onend = () => {
+                // Configurar callback para cuando termine la descripción
+                setTimeout(() => {
                     console.log("🏁 Síntesis de voz terminada");
                     anunciarSiguientePunto(orden);
-                };
+                }, texto.length * 80); // Estimar duración basada en longitud del texto
                 
-                utterance.onerror = (event) => {
-                    console.error("Error en síntesis de voz:", event.error);
-                    mostrarNotificacion(`⚠️ No se pudo reproducir audio para: ${nombre}`, 'warning');
-                    anunciarSiguientePunto(orden);
-                };
-                
-                // Reproducir síntesis de voz
-                speechSynthesis.speak(utterance);
             } else {
                 console.log("❌ Síntesis de voz no disponible");
                 mostrarNotificacion(`📝 Punto visitado: ${nombre}`, 'info');
@@ -809,7 +892,7 @@
             }, 4000);
         }
 
-        // ¡FUNCIÓN 'anunciarSiguientePunto' NUEVA!
+        // ¡FUNCIÓN 'anunciarSiguientePunto' MEJORADA CON VOZ FEMENINA!
         function anunciarSiguientePunto(ordenActual) {
             const siguientePunto = encontrarSiguientePunto(ordenActual);
             
@@ -828,11 +911,14 @@
                 // Crear el texto del anuncio
                 const textoAnuncio = `Siguiente parada: ${nombreSiguiente}. Se encuentra a ${distanciaRedondeada} metros.`;
 
-                // Usar la voz del navegador
-                hablarTexto(textoAnuncio);
+                // Usar voz femenina para navegación
+                mostrarNotificacion(`👩‍🗣️ Navegación: ${nombreSiguiente}`, 'info');
+                anunciarNavegacion(textoAnuncio); // Usa voz femenina
+                
             } else if (!siguientePunto) {
-                // Es el último punto
-                hablarTexto("Has completado el recorrido. ¡Gracias por visitarnos!");
+                // Es el último punto - también con voz femenina
+                anunciarNavegacion("Has completado el recorrido. ¡Gracias por visitarnos!");
+                mostrarNotificacion(`🎉 ¡Recorrido completado!`, 'success');
             }
         }
 
