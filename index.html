@@ -63,6 +63,20 @@
         background: linear-gradient(135deg, #9b59b6, #8e44ad);
       }
       
+      /* Estilo especial para el próximo punto */
+      .icon-siguiente {
+        background: linear-gradient(135deg, #ff6b35, #f7931e) !important;
+        animation: pulso 2s infinite;
+        border: 3px solid #fff !important;
+        box-shadow: 0 0 20px rgba(255, 107, 53, 0.6) !important;
+      }
+      
+      @keyframes pulso {
+        0% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 107, 53, 0.6); }
+        50% { transform: scale(1.1); box-shadow: 0 0 30px rgba(255, 107, 53, 0.9); }
+        100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 107, 53, 0.6); }
+      }
+      
       /* Estilos para el panel de testing */
       #testing-panel {
         position: fixed;
@@ -116,6 +130,9 @@
       </div>
       <div class="testing-instructions">
         <small>🔊 Audio: 👨 Hombre (descripción) + 👩 Mujer (navegación)</small>
+      </div>
+      <div class="testing-instructions">
+        <small>🎯 Visual: 🟠 Siguiente punto + 🔗 Ruta azul</small>
       </div>
       <div id="testing-status" class="testing-status" style="display: none;">
         ✅ Modo Testing Activo
@@ -390,6 +407,10 @@
 
       // Un objeto para guardar nuestros marcadores y poder llamarlos
       let marcadoresLeaflet = {};
+      
+      // Variables para gestión visual de navegación
+      let rutaActual = null; // Línea azul hacia el siguiente punto
+      let puntoSiguienteActual = null; // Referencia al próximo punto destacado
 
       // 3. Agregar tus puntos (POIs) al mapa
       L.geoJSON(misPuntos, {
@@ -608,6 +629,11 @@
         }
         // ... (aquí está tu código para actualizar el 'marcadorUsuario')
 
+        // Actualizar ruta visual si hay un punto siguiente destacado
+        if (puntoSiguienteActual) {
+          dibujarRutaHaciaSiguiente(puntoSiguienteActual);
+        }
+
         // --- ¡LÍNEA NUEVA! ---
         // Ahora, revisamos la proximidad con esta nueva ubicación
         revisarProximidad(lat, lon);
@@ -699,6 +725,11 @@
         
         // Centrar mapa en la nueva posición
         map.setView([posicionTestLat, posicionTestLon], 17);
+        
+        // Actualizar ruta visual si hay un punto siguiente destacado
+        if (puntoSiguienteActual) {
+          dibujarRutaHaciaSiguiente(puntoSiguienteActual);
+        }
         
         // Revisar proximidad
         revisarProximidad(posicionTestLat, posicionTestLon);
@@ -892,7 +923,90 @@
             }, 4000);
         }
 
-        // ¡FUNCIÓN 'anunciarSiguientePunto' MEJORADA CON VOZ FEMENINA!
+        // === FUNCIONES DE NAVEGACIÓN VISUAL ===
+        
+        // Función para destacar visualmente el siguiente punto
+        function destacarSiguientePunto(punto) {
+            // Limpiar destacado anterior
+            limpiarDestacadoAnterior();
+            
+            if (punto) {
+                const marcador = marcadoresLeaflet[punto.properties.id];
+                if (marcador) {
+                    // Obtener el elemento DOM del icono
+                    const iconElement = marcador._icon;
+                    if (iconElement) {
+                        const poiIcon = iconElement.querySelector('.poi-icon');
+                        if (poiIcon) {
+                            // Agregar clase de destacado
+                            poiIcon.classList.add('icon-siguiente');
+                            puntoSiguienteActual = punto;
+                            console.log(`🎯 Destacando siguiente punto: ${punto.properties.nombre}`);
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Función para limpiar el destacado anterior
+        function limpiarDestacadoAnterior() {
+            if (puntoSiguienteActual) {
+                const marcadorAnterior = marcadoresLeaflet[puntoSiguienteActual.properties.id];
+                if (marcadorAnterior && marcadorAnterior._icon) {
+                    const poiIcon = marcadorAnterior._icon.querySelector('.poi-icon');
+                    if (poiIcon) {
+                        poiIcon.classList.remove('icon-siguiente');
+                    }
+                }
+                puntoSiguienteActual = null;
+            }
+        }
+        
+        // Función para dibujar ruta azul hasta el siguiente punto
+        function dibujarRutaHaciaSiguiente(puntoDestino) {
+            // Limpiar ruta anterior
+            if (rutaActual) {
+                map.removeLayer(rutaActual);
+                rutaActual = null;
+            }
+            
+            if (puntoDestino && posicionActualUsuario) {
+                const destino = L.latLng(
+                    puntoDestino.geometry.coordinates[1], // lat
+                    puntoDestino.geometry.coordinates[0]  // lon
+                );
+                
+                // Crear línea azul con estilo atractivo
+                rutaActual = L.polyline([posicionActualUsuario, destino], {
+                    color: '#2196F3',        // Azul material design
+                    weight: 4,               // Grosor
+                    opacity: 0.8,            // Transparencia
+                    dashArray: '10, 5',      // Línea punteada
+                    dashOffset: '0'
+                }).addTo(map);
+                
+                // Animar la línea punteada
+                let offset = 0;
+                function animarLinea() {
+                    if (rutaActual && map.hasLayer(rutaActual)) {
+                        offset += 2;
+                        rutaActual.setStyle({ dashOffset: -offset });
+                        setTimeout(animarLinea, 100);
+                    }
+                }
+                animarLinea();
+                
+                console.log(`🔗 Ruta dibujada hacia: ${puntoDestino.properties.nombre}`);
+            }
+        }
+        
+        // Función integrada para gestión visual completa
+        function actualizarNavegacionVisual(siguientePunto) {
+            destacarSiguientePunto(siguientePunto);
+            dibujarRutaHaciaSiguiente(siguientePunto);
+        }
+
+        // ¡FUNCIÓN 'anunciarSiguientePunto' MEJORADA CON VISUALES!
         function anunciarSiguientePunto(ordenActual) {
             const siguientePunto = encontrarSiguientePunto(ordenActual);
             
@@ -908,6 +1022,10 @@
                 const distancia = map.distance(posicionActualUsuario, posSiguiente);
                 const distanciaRedondeada = Math.round(distancia); // en metros
 
+                // === MEJORAS VISUALES ===
+                // Destacar el siguiente punto y dibujar ruta azul
+                actualizarNavegacionVisual(siguientePunto);
+
                 // Crear el texto del anuncio
                 const textoAnuncio = `Siguiente parada: ${nombreSiguiente}. Se encuentra a ${distanciaRedondeada} metros.`;
 
@@ -916,7 +1034,14 @@
                 anunciarNavegacion(textoAnuncio); // Usa voz femenina
                 
             } else if (!siguientePunto) {
-                // Es el último punto - también con voz femenina
+                // Es el último punto - limpiar todos los visuales
+                limpiarDestacadoAnterior();
+                if (rutaActual) {
+                    map.removeLayer(rutaActual);
+                    rutaActual = null;
+                }
+                
+                // Voz femenina para finalización
                 anunciarNavegacion("Has completado el recorrido. ¡Gracias por visitarnos!");
                 mostrarNotificacion(`🎉 ¡Recorrido completado!`, 'success');
             }
