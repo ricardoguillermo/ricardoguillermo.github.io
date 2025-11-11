@@ -114,6 +114,9 @@
         Luego usa las flechas:<br>
         ⬆️ ⬇️ ⬅️ ➡️ (≈5m cada clic)
       </div>
+      <div class="testing-instructions">
+        <small>🔊 Audio: MP3 o voz sintética</small>
+      </div>
       <div id="testing-status" class="testing-status" style="display: none;">
         ✅ Modo Testing Activo
       </div>
@@ -679,7 +682,7 @@
         // ... (Aquí está tu variable 'radioActivacion') ...
         // ... (Aquí está tu función 'revisarProximidad') ...
 
-        // ¡FUNCIÓN 'activarPunto' ACTUALIZADA!
+        // ¡FUNCIÓN 'activarPunto' MEJORADA CON AUDIO FALLBACK!
         function activarPunto(feature) {
             
             // 1. Marcar como visitado
@@ -687,6 +690,7 @@
 
             const id = feature.properties.id;
             const nombre = feature.properties.nombre;
+            const descripcion = feature.properties.descripcion;
             const audioFile = feature.properties.audio;
 
             // 2. Abrir el Popup
@@ -695,24 +699,114 @@
                 marcador.openPopup();
             }
 
-            // 3. Reproducir el Audio de la reseña
-            console.log(`Reproduciendo: ${audioFile}`);
+            // 3. Reproducir el Audio (con fallback a síntesis de voz)
+            console.log(`🎯 PUNTO ACTIVADO: ${nombre}`);
+            console.log(`📍 Intentando reproducir: ${audioFile}`);
+            
+            reproducirAudioConFallback(audioFile, nombre, descripcion, feature.properties.orden);
+        }
+
+        // Nueva función para manejar audio con fallback
+        function reproducirAudioConFallback(audioFile, nombre, descripcion, orden) {
             try {
                 let audio = new Audio(audioFile);
-                audio.play();
-
-                // --- ¡NUEVA LÓGICA! ---
-                // Cuando el audio de la reseña TERMINE...
-                audio.onended = () => {
-                    // 4. ...Buscamos el siguiente punto
-                    anunciarSiguientePunto(feature.properties.orden);
+                
+                // Configurar eventos de audio
+                audio.oncanplaythrough = () => {
+                    console.log("✅ Audio MP3 cargado correctamente");
+                    mostrarNotificacion(`🎵 Reproduciendo: ${nombre}`, 'success');
                 };
-
+                
+                audio.onerror = () => {
+                    console.log("❌ Error de audio MP3, usando síntesis de voz");
+                    usarSintesisDeVoz(nombre, descripcion, orden);
+                };
+                
+                audio.onended = () => {
+                    console.log("🏁 Audio MP3 terminado");
+                    anunciarSiguientePunto(orden);
+                };
+                
+                // Intentar reproducir
+                audio.play().catch((error) => {
+                    console.log("❌ No se pudo reproducir audio MP3:", error.message);
+                    usarSintesisDeVoz(nombre, descripcion, orden);
+                });
+                
             } catch (e) {
-                console.error("Error al reproducir el audio: ", e);
-                // Si el audio falla, anunciamos el siguiente punto igualmente
-                anunciarSiguientePunto(feature.properties.orden);
+                console.log("❌ Error al crear audio MP3:", e.message);
+                usarSintesisDeVoz(nombre, descripcion, orden);
             }
+        }
+
+        // Función para usar síntesis de voz como respaldo
+        function usarSintesisDeVoz(nombre, descripcion, orden) {
+            mostrarNotificacion(`🗣️ Usando voz sintética: ${nombre}`, 'info');
+            
+            if ('speechSynthesis' in window) {
+                const texto = `Has llegado a ${nombre}. ${descripcion}`;
+                const utterance = new SpeechSynthesisUtterance(texto);
+                
+                // Configurar la voz en español
+                utterance.lang = 'es-ES';
+                utterance.rate = 0.9; // Velocidad
+                utterance.pitch = 1; // Tono
+                utterance.volume = 0.8; // Volumen
+                
+                utterance.onend = () => {
+                    console.log("🏁 Síntesis de voz terminada");
+                    anunciarSiguientePunto(orden);
+                };
+                
+                utterance.onerror = (event) => {
+                    console.error("Error en síntesis de voz:", event.error);
+                    mostrarNotificacion(`⚠️ No se pudo reproducir audio para: ${nombre}`, 'warning');
+                    anunciarSiguientePunto(orden);
+                };
+                
+                // Reproducir síntesis de voz
+                speechSynthesis.speak(utterance);
+            } else {
+                console.log("❌ Síntesis de voz no disponible");
+                mostrarNotificacion(`📝 Punto visitado: ${nombre}`, 'info');
+                setTimeout(() => anunciarSiguientePunto(orden), 2000);
+            }
+        }
+
+        // Función para mostrar notificaciones visuales
+        function mostrarNotificacion(mensaje, tipo = 'info') {
+            const notificacion = document.createElement('div');
+            notificacion.className = `notificacion ${tipo}`;
+            notificacion.textContent = mensaje;
+            
+            // Estilos inline para la notificación
+            notificacion.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 10px;
+                padding: 12px 16px;
+                border-radius: 6px;
+                color: white;
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                z-index: 1001;
+                max-width: 300px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+                transition: opacity 0.3s;
+                background: ${tipo === 'success' ? '#4CAF50' : tipo === 'warning' ? '#FF9800' : '#2196F3'};
+            `;
+            
+            document.body.appendChild(notificacion);
+            
+            // Remover después de 4 segundos
+            setTimeout(() => {
+                notificacion.style.opacity = '0';
+                setTimeout(() => {
+                    if (notificacion.parentNode) {
+                        notificacion.parentNode.removeChild(notificacion);
+                    }
+                }, 300);
+            }, 4000);
         }
 
         // ¡FUNCIÓN 'anunciarSiguientePunto' NUEVA!
