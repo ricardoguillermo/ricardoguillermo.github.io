@@ -62,10 +62,62 @@
       .icon-default {
         background: linear-gradient(135deg, #9b59b6, #8e44ad);
       }
+      
+      /* Estilos para el panel de testing */
+      #testing-panel {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        z-index: 1000;
+        max-width: 250px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      
+      #testing-panel h3 {
+        margin: 0 0 10px 0;
+        color: #ffd700;
+        font-size: 14px;
+      }
+      
+      #testing-panel.hidden {
+        display: none;
+      }
+      
+      .testing-instructions {
+        line-height: 1.4;
+        margin: 5px 0;
+      }
+      
+      .testing-status {
+        color: #4CAF50;
+        font-weight: bold;
+        margin-top: 10px;
+      }
     </style>
   </head>
   <body>
     <div id="map"></div>
+    
+    <!-- Panel de instrucciones para testing -->
+    <div id="testing-panel">
+      <h3>🎮 Modo Testing</h3>
+      <div class="testing-instructions">
+        <strong>Presiona 'T'</strong> para activar testing
+      </div>
+      <div class="testing-instructions">
+        Luego usa las flechas:<br>
+        ⬆️ ⬇️ ⬅️ ➡️ (≈5m cada clic)
+      </div>
+      <div id="testing-status" class="testing-status" style="display: none;">
+        ✅ Modo Testing Activo
+      </div>
+    </div>
 
     <script>
       // --- FASE 1: TUS DATOS (PUNTOS DE INTERÉS) ---
@@ -418,7 +470,7 @@
           onUbicacionCorrecta,
           onUbicacionError,
           opcionesGeo
-        );
+        ); 
       } else {
         alert(
           "Tu navegador no soporta Geolocalización. Esta aplicación no funcionará."
@@ -477,6 +529,121 @@
           );
         }
       }
+
+      // --- MODO TESTING CON TECLAS (PARA PC) ---
+      
+      // Variables para el modo testing
+      let modoTesting = false;
+      let posicionTestLat = -34.757; // Posición inicial en La Floresta
+      let posicionTestLon = -55.665;
+      
+      // Aproximadamente 5 metros en coordenadas (esto puede variar según la latitud)
+      // En Uruguay, 1 grado de latitud ≈ 111 km, 1 grado de longitud ≈ 78 km
+      const incremento = 0.00004; // Aproximadamente 5 metros
+      
+      // Función para activar el modo testing
+      function activarModoTesting() {
+        if (!modoTesting) {
+          modoTesting = true;
+          console.log("🎮 MODO TESTING ACTIVADO - Usa las flechas para moverte");
+          
+          // Mostrar estado en el panel
+          document.getElementById('testing-status').style.display = 'block';
+          
+          // Posicionar en el centro de La Floresta
+          posicionActualUsuario = L.latLng(posicionTestLat, posicionTestLon);
+          
+          // Crear o mover el marcador del usuario
+          if (marcadorUsuario) {
+            marcadorUsuario.setLatLng(posicionActualUsuario);
+          } else {
+            marcadorUsuario = L.circleMarker([posicionTestLat, posicionTestLon], {
+              color: "#007bff",
+              fillColor: "#007bff", 
+              fillOpacity: 0.5,
+              radius: 8,
+            }).addTo(map);
+          }
+          
+          // Centrar el mapa
+          map.setView([posicionTestLat, posicionTestLon], 17);
+          
+          // Revisar proximidad inicial
+          revisarProximidad(posicionTestLat, posicionTestLon);
+        }
+      }
+      
+      // Función para mover la posición simulada
+      function moverPosicionTest(direccion) {
+        if (!modoTesting) return;
+        
+        switch(direccion) {
+          case 'arriba':
+            posicionTestLat += incremento;
+            break;
+          case 'abajo':
+            posicionTestLat -= incremento;
+            break;
+          case 'izquierda':
+            posicionTestLon -= incremento;
+            break;
+          case 'derecha':
+            posicionTestLon += incremento;
+            break;
+        }
+        
+        // Actualizar posición actual
+        posicionActualUsuario = L.latLng(posicionTestLat, posicionTestLon);
+        
+        // Mover el marcador
+        if (marcadorUsuario) {
+          marcadorUsuario.setLatLng(posicionActualUsuario);
+        }
+        
+        // Centrar mapa en la nueva posición
+        map.setView([posicionTestLat, posicionTestLon], 17);
+        
+        // Revisar proximidad
+        revisarProximidad(posicionTestLat, posicionTestLon);
+        
+        console.log(`📍 Nueva posición: ${posicionTestLat.toFixed(6)}, ${posicionTestLon.toFixed(6)}`);
+      }
+      
+      // Escuchar eventos del teclado
+      document.addEventListener('keydown', function(event) {
+        // Activar modo testing con la tecla 'T'
+        if (event.key.toLowerCase() === 't') {
+          activarModoTesting();
+          return;
+        }
+        
+        // Solo funcionar si el modo testing está activo
+        if (!modoTesting) return;
+        
+        // Prevenir el comportamiento predeterminado de las flechas
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+          event.preventDefault();
+        }
+        
+        // Manejar las teclas de flecha
+        switch(event.key) {
+          case 'ArrowUp':
+            moverPosicionTest('arriba');
+            break;
+          case 'ArrowDown':
+            moverPosicionTest('abajo');
+            break;
+          case 'ArrowLeft':
+            moverPosicionTest('izquierda');
+            break;
+          case 'ArrowRight':
+            moverPosicionTest('derecha');
+            break;
+        }
+      });
+      
+      // Mensaje inicial en consola
+      console.log("💡 Para testing en PC: Presiona 'T' para activar modo testing, luego usa las flechas ⬆️⬇️⬅️➡️");
 
       // --- FASE 4: LÓGICA DE PROXIMIDAD ---
 
