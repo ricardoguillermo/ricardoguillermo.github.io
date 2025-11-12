@@ -1,0 +1,200 @@
+{
+  "type": "FeatureCollection",
+  "description": "Rutas por calles entre puntos de interés de La Floresta",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "desde": "poi_1",
+        "hasta": "poi_2", 
+        "nombre": "Ruta 1 a 2",
+        "descripcion": "Del Hotel La Floresta al punto 2"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-55.67774224315738, -34.76043563352309],
+          [-55.677309327927105, -34.7604460328947],
+          [-55.677028312777615, -34.76047099138123],
+          [-55.67702071777357, -34.76061658240229]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "desde": "poi_2",
+        "hasta": "poi_3",
+        "nombre": "Ruta 2 a 3",
+        "descripcion": "Del punto 2 al punto 3"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-55.67704317308188, -34.760602062986486],
+          [-55.67702752030683, -34.76047489767304],
+          [-55.67653386907653, -34.760537128779745],
+          [-55.67598133404287, -34.76079494344367],
+          [-55.67577311851101, -34.760452828145866]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "desde": "poi_3",
+        "hasta": "poi_4",
+        "nombre": "Ruta 3 a 4",
+        "descripcion": "Del punto 3 al punto 4"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-55.675754969690566, -34.760393279766184],
+          [-55.67570762542184, -34.76032176242638],
+          [-55.6750202090306, -34.76034170025042],
+          [-55.674542775828755, -34.760219402976986],
+          [-55.67367642231132, -34.75984039046047]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "desde": "poi_4",
+        "hasta": "poi_5",
+        "nombre": "Ruta 4 a 5",
+        "descripcion": "Del punto 4 al punto 5"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-55.67320755622514, -34.75924913289344],
+          [-55.67288790531391, -34.75898055326243],
+          [-55.67236484018643, -34.758950711027275],
+          [-55.668485440491054, -34.760126486932734],
+          [-55.668194848763136, -34.760132455300244],
+          [-55.66783160909128, -34.75991162558568],
+          [-55.66770084280942, -34.75978032115108],
+          [-55.66782434429784, -34.75952368006228]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "desde": "poi_5",
+        "hasta": "poi_6",
+        "nombre": "Ruta 5 a 6",
+        "descripcion": "Del punto 5 al punto 6"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-55.66783160908671, -34.75945205913525],
+          [-55.66847091090917, -34.75744067983614]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "desde": "poi_6",
+        "hasta": "poi_7",
+        "nombre": "Ruta 6 a 7",
+        "descripcion": "Del punto 6 al punto 7"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-55.66892295191356, -34.75697004537532],
+          [-55.672793409173146, -34.75521501052166],
+          [-55.67336446024424, -34.75564074022483],
+          [-55.67539830329828, -34.754009590653645]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "desde": "poi_7",
+        "hasta": "poi_8",
+        "nombre": "Ruta 7 a 8",
+        "descripcion": "Del punto 7 al punto 8"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-55.67581434179134, -34.75339602369638],
+          [-55.676152742426055, -34.75357848357132],
+          [-55.67976939920962, -34.752049283579154]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "desde": "poi_8",
+        "hasta": "poi_9",
+        "nombre": "Ruta 8 a 9",
+        "descripcion": "Del punto 8 al punto 9"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-55.6802347000455, -34.75205797231916],
+          [-55.68283615491267, -34.75279650987077],
+          [-55.680403900346306, -34.758530811997524]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "desde": "poi_9",
+        "hasta": "poi_10",
+        "nombre": "Ruta 9 a 10",
+        "descripcion": "Del punto 9 al punto 10"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-55.67956054171363, -34.75886702172613],
+          [-55.67831784629535, -34.75900642805567]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "desde": "poi_10",
+        "hasta": "poi_11",
+        "nombre": "Ruta 10 a 11",
+        "descripcion": "Del punto 10 al punto 11"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-55.67806506224961, -34.75904332903884],
+          [-55.67545490279676, -34.759416444654846]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "desde": "poi_11",
+        "hasta": "poi_12",
+        "nombre": "Ruta 11 a 12",
+        "descripcion": "Del punto 11 al punto 12"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-55.67536248648765, -34.75929757149675],
+          [-55.67655031767404, -34.7577847287694]
+        ]
+      }
+    }
+  ]
+}
