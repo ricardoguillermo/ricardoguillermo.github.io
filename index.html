@@ -521,7 +521,7 @@
         },
       }).addTo(map);
 
-      // --- FUNCIÓN NUEVA: DIBUJAR RUTA ---
+      // --- FUNCIÓN NUEVA: DIBUJAR RUTA COMPLETA POR CALLES ---
 
         function dibujarRutaCompleta() {
             // 1. Ordenar los puntos según la propiedad "orden"
@@ -529,19 +529,51 @@
                 return a.properties.orden - b.properties.orden;
             });
 
-            // 2. Extraer solo las coordenadas [lat, lon]
-            const coordenadasRuta = puntosOrdenados.map(feature => {
-                // De nuevo, [lon, lat] -> [lat, lon] para Leaflet
-                return [feature.geometry.coordinates[1], feature.geometry.coordinates[0]];
-            });
+            // 2. Crear coordenadas siguiendo las calles reales
+            const coordenadasRutaCompleta = [];
+            
+            for (let i = 0; i < puntosOrdenados.length - 1; i++) {
+                const puntoActual = puntosOrdenados[i];
+                const puntoSiguiente = puntosOrdenados[i + 1];
+                
+                // Buscar ruta por calles entre estos puntos
+                const claveRuta = `${puntoActual.properties.orden}_${puntoSiguiente.properties.orden}`;
+                const rutaPorCalles = rutasCalles[claveRuta];
+                
+                if (rutaPorCalles && rutaPorCalles.length > 0) {
+                    // Agregar coordenadas de la ruta por calles
+                    for (const coord of rutaPorCalles) {
+                        // Convertir [lon, lat] a [lat, lon] para Leaflet
+                        coordenadasRutaCompleta.push([coord[1], coord[0]]);
+                    }
+                } else {
+                    // Fallback: agregar solo los puntos inicio y fin
+                    if (coordenadasRutaCompleta.length === 0) {
+                        // Primer punto del recorrido
+                        coordenadasRutaCompleta.push([
+                            puntoActual.geometry.coordinates[1], 
+                            puntoActual.geometry.coordinates[0]
+                        ]);
+                    }
+                    // Punto siguiente
+                    coordenadasRutaCompleta.push([
+                        puntoSiguiente.geometry.coordinates[1], 
+                        puntoSiguiente.geometry.coordinates[0]
+                    ]);
+                }
+            }
 
-            // 3. Dibujar la línea (Polyline)
-            L.polyline(coordenadasRuta, {
-                color: '#3388ff', // Color azul
-                weight: 3,
-                opacity: 0.7,
-                dashArray: '5, 10' // Línea punteada
-            }).addTo(map);
+            // 3. Dibujar la línea roja siguiendo calles reales
+            if (coordenadasRutaCompleta.length > 1) {
+                L.polyline(coordenadasRutaCompleta, {
+                    color: '#e74c3c',       // Rojo elegante
+                    weight: 3,              // Grosor medio
+                    opacity: 0.7,           // Semi-transparente
+                    dashArray: '8, 12'      // Línea punteada distintiva
+                }).addTo(map);
+                
+                console.log("🔴 Ruta completa dibujada siguiendo calles reales");
+            }
         }
 
         // ¡Y llamamos a la función para que se ejecute!
@@ -870,7 +902,7 @@
       // Para probar en PC, pon un valor alto (ej: 10000).
       // Para la vida real, un valor bueno es entre 20 y 30 metros.
       const radioActivacion = 30; // Radio para activar puntos
-      const radioPopupCerrar = 70; // Radio para auto-cerrar popups (más grande)
+      const radioPopupCerrar = 60; // Radio para auto-cerrar popups (más grande)
 
       // Función que revisa si estamos cerca de algún punto
       function revisarProximidad(lat, lon) {
@@ -1088,8 +1120,8 @@
                     
                     rutaActual = L.polyline(coordenadas, {
                         color: '#2196F3',        // Azul material design
-                        weight: 4,               // Grosor
-                        opacity: 0.8,            // Transparencia
+                        weight: 6,               // MÁS ANCHO para mejor visibilidad
+                        opacity: 0.9,            // Más opaco para destacar
                         dashArray: '10, 5',      // Línea punteada
                         dashOffset: '0'
                     }).addTo(map);
@@ -1105,8 +1137,8 @@
                     
                     rutaActual = L.polyline([posicionActualUsuario, destino], {
                         color: '#FF9800',        // Naranja para indicar que es línea recta
-                        weight: 4,
-                        opacity: 0.6,
+                        weight: 6,               // MÁS ANCHO, igual que la ruta por calles
+                        opacity: 0.7,            // Ligeramente menos opaco
                         dashArray: '15, 10',     // Más espaciado para diferenciarlo
                         dashOffset: '0'
                     }).addTo(map);
