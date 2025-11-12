@@ -1,0 +1,45 @@
+{
+  "territorios": [
+    {
+      "id": "la-floresta",
+      "nombre": "La Floresta",
+      "descripcion": "Balneario tradicional de Canelones, Uruguay",
+      "thumbnail": "./assets/thumbnails/la-floresta.jpg",
+      "centro": [-34.757, -55.665],
+      "zoom": 16,
+      "archivos": {
+        "pois": "./data/la-floresta-pois.json",
+        "rutas": "./data/la-floresta-rutas.json"
+      },
+      "estadisticas": {
+        "puntos": 12,
+        "duracion_estimada": "45-60 minutos",
+        "dificultad": "Fácil"
+      },
+      "activo": true
+    },
+    {
+      "id": "ejemplo-futuro", 
+      "nombre": "Otro Territorio",
+      "descripcion": "Ejemplo de cómo agregar un nuevo territorio",
+      "thumbnail": "./assets/thumbnails/ejemplo.jpg",
+      "centro": [-34.9, -56.2],
+      "zoom": 15,
+      "archivos": {
+        "pois": "./territorios/ejemplo-futuro/pois.json",
+        "rutas": "./territorios/ejemplo-futuro/rutas.json"
+      },
+      "estadisticas": {
+        "puntos": 8,
+        "duracion_estimada": "30-40 minutos",
+        "dificultad": "Medio"
+      },
+      "activo": false
+    }
+  ],
+  "configuracion": {
+    "version": "1.0.0",
+    "ultima_actualizacion": "2024-11-12",
+    "idioma_predeterminado": "es"
+  }
+}

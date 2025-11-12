@@ -1,0 +1,43 @@
+{
+  "territorio": {
+    "nombre": "Ejemplo de Nuevo Territorio", 
+    "descripcion": "Plantilla para crear nuevos territorios",
+    "centro": [-34.9, -56.2],
+    "zoom": 16
+  },
+  "puntos": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-56.2, -34.9]
+        },
+        "properties": {
+          "id": "poi_1",
+          "nombre": "Punto de Ejemplo 1",
+          "descripcion": "Primera parada del recorrido...",
+          "audio": "audio/punto1.mp3",
+          "orden": 1,
+          "categoria": "plaza"
+        }
+      },
+      {
+        "type": "Feature", 
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-56.195, -34.905]
+        },
+        "properties": {
+          "id": "poi_2",
+          "nombre": "Punto de Ejemplo 2",
+          "descripcion": "Segunda parada del recorrido...",
+          "audio": "audio/punto2.mp3",
+          "orden": 2,
+          "categoria": "hotel"
+        }
+      }
+    ]
+  }
+}

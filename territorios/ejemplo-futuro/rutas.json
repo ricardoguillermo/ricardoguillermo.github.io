@@ -1,0 +1,12 @@
+{
+  "territorio": "ejemplo-futuro",
+  "descripcion": "Rutas entre puntos de interés del territorio de ejemplo",
+  "formato": "Coordenadas en [longitud, latitud] - GeoJSON estándar",
+  "rutas": {
+    "1_2": [
+      [-56.2, -34.9],
+      [-56.198, -34.902],
+      [-56.195, -34.905]
+    ]
+  }
+}

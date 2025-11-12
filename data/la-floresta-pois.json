@@ -1,0 +1,193 @@
+{
+  "territorio": {
+    "nombre": "La Floresta",
+    "descripcion": "Balneario tradicional de Canelones, Uruguay",
+    "centro": [-34.757, -55.665],
+    "zoom": 16
+  },
+  "puntos": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-55.677874536889675, -34.76094347598904]
+        },
+        "properties": {
+          "id": "poi_1",
+          "nombre": "Hotel La Floresta",
+          "descripcion": "El icónico Ex-Hotel La Floresta es el símbolo del balneario...",
+          "audio": "audio/hotel.mp3",
+          "orden": 1,
+          "categoria": "hotel"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-55.67833471832813, -34.75902725049957]
+        },
+        "properties": {
+          "id": "poi_2",
+          "nombre": "Sin Nombre",
+          "descripcion": "Hay que averiguar el nombre y descripción de este punto...",
+          "audio": "audio/country.mp3",
+          "orden": 10,
+          "categoria": "club"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-55.67574992051011, -34.75374934645494]
+        },
+        "properties": {
+          "id": "poi_3",
+          "nombre": "Plaza 33",
+          "descripcion": "La Plaza 33 es un espacio público que fomenta la convivencia y el esparcimiento.",
+          "audio": "audio/plaza33.mp3",
+          "orden": 7,
+          "categoria": "plaza"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-55.668644494635636, -34.75719219349257]
+        },
+        "properties": {
+          "id": "poi_4",
+          "nombre": "Plaza Salvador García Pintos",
+          "descripcion": "Inaugurada en 2021, esta plaza es un ejemplo de transformación. Lo que antiguamente era un basural, hoy es un espacio público renovado y lleno de vida.",
+          "audio": "audio/plazaSalvador.mp3",
+          "orden": 6,
+          "categoria": "plaza"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-55.667910491734084, -34.75958472020964]
+        },
+        "properties": {
+          "id": "poi_5",
+          "nombre": "Plazoleta del Leonismo",
+          "descripcion": "Esta plazoleta es un homenaje a los valores del Club de Leones (Leonismo) y su servicio ...",
+          "audio": "audio/plazaleonismo.mp3",
+          "orden": 5,
+          "categoria": "plaza"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-55.673522605168316, -34.7595672510129]
+        },
+        "properties": {
+          "id": "poi_6",
+          "nombre": "Plaza Artigas",
+          "descripcion": "Como en la mayoría de las localidades uruguayas, esta plaza rinde homenaje al Prócer de la Pátria ...",
+          "audio": "audio/plazaartigas.mp3",
+          "orden": 4,
+          "categoria": "plaza"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-55.67520041687363, -34.75938912256196]
+        },
+        "properties": {
+          "id": "poi_7",
+          "nombre": "Plaza Don Orione",
+          "descripcion": "Esta plaza toma su nombre en honor a San Luis Orione, fundador del Movimiento Orionita...",
+          "audio": "audio/plazaorione.mp3",
+          "orden": 11,
+          "categoria": "plaza"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-55.67574879662696, -34.76037254637836]
+        },
+        "properties": {
+          "id": "poi_8",
+          "nombre": "Plaza Zorrilla de San Martín",
+          "descripcion": "Dedicada al 'Poeta de la Patria', Juan Zorrilla de San Martín. Este espacio rinde tributo a su monumental obra literaria",
+          "audio": "audio/plazazorrilla.mp3",
+          "orden": 3,
+          "categoria": "plaza"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-55.67690120312782, -34.76062577419499]
+        },
+        "properties": {
+          "id": "poi_9",
+          "nombre": "Plaza Liga de Fomento",
+          "descripcion": "Este espacio celebra el espíritu cívico de la Liga de Fomento de La Floresta.",
+          "audio": "audio/plazaligafomento.mp3",
+          "orden": 2,
+          "categoria": "plaza"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-55.680042668032684, -34.75882526846987]
+        },
+        "properties": {
+          "id": "poi_10",
+          "nombre": "Plaza Lavalleja",
+          "descripcion": "Esta plaza honra la memoria de Juan Antonio Lavalleja, líder de los Treinta y Tres Orientales. Es un espacio que ...",
+          "audio": "audio/plazalavalleja.mp3",
+          "orden": 9,
+          "categoria": "plaza"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-55.68000110452356, -34.752043461814516]
+        },
+        "properties": {
+          "id": "poi_11",
+          "nombre": "Plaza Zabala",
+          "descripcion": "Un rincón que recuerda al fundador de Montevideo, Bruno Mauricio de Zabala. Esta plaza conecta al ...",
+          "audio": "audio/plazazabala.mp3",
+          "orden": 8,
+          "categoria": "plaza"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-55.676521832650906, -34.75779537345324]
+        },
+        "properties": {
+          "id": "poi_12",
+          "nombre": "Plaza Rivera",
+          "descripcion": "Dedicada a Fructuoso Rivera, primer presidente constitucional de Uruguay y figura clave en los primeros años de la República.",
+          "audio": "audio/plazarivera.mp3",
+          "orden": 12,
+          "categoria": "plaza"
+        }
+      }
+    ]
+  }
+}
