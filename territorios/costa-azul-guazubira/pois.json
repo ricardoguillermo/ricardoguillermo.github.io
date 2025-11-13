@@ -4,7 +4,7 @@
     "id": "costa-azul-guazubira",
     "nombre": "Costa Azul - Guazubira",
     "descripcion": "Hermosa costa atlántica de Canelones, Uruguay",
-    "centro": [,-34.8167,-55.5833],
+    "centro": [-34.8167,-55.5833],
     "zoom": 15
   },
   "features": [
