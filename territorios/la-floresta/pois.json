@@ -4,7 +4,7 @@
     "id": "la-floresta",
     "nombre": "La Floresta",
     "descripcion": "Balneario tradicional de Canelones, Uruguay",
-    "centro": [-55.677874536889675, -34.76094347598904],
+    "centro": [ -34.76094347598904,-55.677874536889675],
     "zoom": 16
   },
   "features": [
