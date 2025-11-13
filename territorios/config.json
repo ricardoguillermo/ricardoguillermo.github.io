@@ -12,8 +12,28 @@
         "rutas": "./data/la-floresta-rutas.json"
       },
       "estadisticas": {
-        "puntos": 12,
+        "totalPOIs": 12,
+        "totalRutas": 11,
         "duracion_estimada": "45-60 minutos",
+        "dificultad": "Fácil"
+      },
+      "activo": true
+    },
+    {
+      "id": "costa-azul-guazubira",
+      "nombre": "Costa Azul - Guazubira",
+      "descripcion": "Hermosa costa atlántica de Canelones, Uruguay",
+      "thumbnail": "./assets/thumbnails/costa-azul-guazubira.jpg",
+      "centro": [-34.8167, -55.5833],
+      "zoom": 15,
+      "archivos": {
+        "pois": "./data/costa-azul-guazubira-pois.json",
+        "rutas": "./data/costa-azul-guazubira-rutas.json"
+      },
+      "estadisticas": {
+        "totalPOIs": 10,
+        "totalRutas": 9,
+        "duracion_estimada": "40-55 minutos",
         "dificultad": "Fácil"
       },
       "activo": true
@@ -30,7 +50,8 @@
         "rutas": "./territorios/ejemplo-futuro/rutas.json"
       },
       "estadisticas": {
-        "puntos": 8,
+        "totalPOIs": 8,
+        "totalRutas": 7,
         "duracion_estimada": "30-40 minutos",
         "dificultad": "Medio"
       },

@@ -1,0 +1,172 @@
+{
+  "tipo": "FeatureCollection",
+  "territorio": {
+    "id": "costa-azul-guazubira",
+    "nombre": "Costa Azul - Guazubira",
+    "descripcion": "Hermosa costa atlántica de Canelones, Uruguay",
+    "centro": [-34.8167, -55.5833],
+    "zoom": 15
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_1",
+        "nombre": "Playa Costa Azul",
+        "categoria": "playa",
+        "descripcion": "Hermosa playa de aguas cristalinas con arena fina y dorada. Ideal para disfrutar del sol y el mar.",
+        "informacion": "Esta playa es reconocida por su belleza natural y sus aguas tranquilas. Es perfecta para familias y cuenta con salvavidas durante la temporada alta.",
+        "audio": "./audio/costa-azul-guazubira/playa_costa_azul.mp3",
+        "imagen": "./images/costa-azul-guazubira/playa_costa_azul.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.5850, -34.8150]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_2",
+        "nombre": "Rambla Costanera",
+        "categoria": "naturaleza",
+        "descripcion": "Paseo costero con vista panorámica al Río de la Plata. Ideal para caminatas y contemplación.",
+        "informacion": "La rambla se extiende por varios kilómetros ofreciendo vistas espectaculares, especialmente durante los atardeceres.",
+        "audio": "./audio/costa-azul-guazubira/rambla_costanera.mp3",
+        "imagen": "./images/costa-azul-guazubira/rambla_costanera.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.5830, -34.8140]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_3",
+        "nombre": "Puerto de Pescadores",
+        "categoria": "cultural",
+        "descripcion": "Pequeño puerto donde llegan los pescadores artesanales con su captura diaria.",
+        "informacion": "Es un lugar pintoresco donde se puede observar la actividad pesquera tradicional y comprar pescado fresco.",
+        "audio": "./audio/costa-azul-guazubira/puerto_pescadores.mp3",
+        "imagen": "./images/costa-azul-guazubira/puerto_pescadores.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.5810, -34.8130]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_4",
+        "nombre": "Restaurante El Balcón",
+        "categoria": "gastronomia",
+        "descripcion": "Restaurante especializado en mariscos y pescados frescos con vista al mar.",
+        "informacion": "Reconocido por su excelente gastronomía marina y su terraza con vista panorámica al Río de la Plata.",
+        "audio": "./audio/costa-azul-guazubira/restaurante_balcon.mp3",
+        "imagen": "./images/costa-azul-guazubira/restaurante_balcon.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.5820, -34.8145]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_5",
+        "nombre": "Mirador de las Gaviotas",
+        "categoria": "naturaleza",
+        "descripcion": "Punto elevado con vista espectacular de la costa y lugar de anidación de gaviotas.",
+        "informacion": "Desde aquí se puede apreciar toda la extensión de la costa y observar la fauna marina, especialmente las gaviotas.",
+        "audio": "./audio/costa-azul-guazubira/mirador_gaviotas.mp3",
+        "imagen": "./images/costa-azul-guazubira/mirador_gaviotas.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.5800, -34.8120]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_6",
+        "nombre": "Camping Costa Azul",
+        "categoria": "alojamiento",
+        "descripcion": "Camping con todas las comodidades a pocos metros de la playa.",
+        "informacion": "Ofrece espacios para carpas y cabañas, con servicios completos incluyendo baños, duchas y parrilleros.",
+        "audio": "./audio/costa-azul-guazubira/camping_costa_azul.mp3",
+        "imagen": "./images/costa-azul-guazubira/camping_costa_azul.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.5860, -34.8160]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_7",
+        "nombre": "Iglesia San José",
+        "categoria": "cultural",
+        "descripcion": "Pequeña iglesia de estilo colonial que sirve a la comunidad local.",
+        "informacion": "Construida en 1920, es un punto de referencia histórico y espiritual de la zona.",
+        "audio": "./audio/costa-azul-guazubira/iglesia_san_jose.mp3",
+        "imagen": "./images/costa-azul-guazubira/iglesia_san_jose.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.5840, -34.8180]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_8",
+        "nombre": "Mercado de Artesanías",
+        "categoria": "comercial",
+        "descripcion": "Pequeño mercado donde artesanos locales venden sus creaciones.",
+        "informacion": "Se pueden encontrar productos únicos hechos a mano, desde cerámicas hasta tejidos típicos de la región.",
+        "audio": "./audio/costa-azul-guazubira/mercado_artesanias.mp3",
+        "imagen": "./images/costa-azul-guazubira/mercado_artesanias.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.5825, -34.8170]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_9",
+        "nombre": "Parque Guazubira",
+        "categoria": "naturaleza",
+        "descripcion": "Área verde con juegos infantiles y espacios para recreación familiar.",
+        "informacion": "Un pulmón verde en el corazón del balneario, perfecto para el descanso y la recreación de toda la familia.",
+        "audio": "./audio/costa-azul-guazubira/parque_guazubira.mp3",
+        "imagen": "./images/costa-azul-guazubira/parque_guazubira.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.5845, -34.8190]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_10",
+        "nombre": "Faro Costa Azul",
+        "categoria": "historico",
+        "descripcion": "Faro histórico que guía a las embarcaciones desde 1935.",
+        "informacion": "Este faro ha sido testigo de la evolución del balneario y sigue funcionando para orientar a los navegantes.",
+        "audio": "./audio/costa-azul-guazubira/faro_costa_azul.mp3",
+        "imagen": "./images/costa-azul-guazubira/faro_costa_azul.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.5790, -34.8110]
+      }
+    }
+  ]
+}

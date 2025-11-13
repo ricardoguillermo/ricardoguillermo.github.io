@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Virtual - Seleccionar Territorio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/selector.css">
+</head>
+<body class="selector-body">
+    <div class="selector-container">
+        <header class="selector-header">
+            <h1><i class="fas fa-map-marked-alt"></i> Guía Virtual</h1>
+            <p class="selector-subtitle">Explora territorios con navegación GPS y audio guía</p>
+        </header>
+
+        <main class="territories-grid" id="territoriesGrid">
+            <!-- Los territorios se cargarán dinámicamente -->
+        </main>
+
+        <footer class="selector-footer">
+            <p>Desarrollado con <i class="fas fa-heart"></i> para explorar el mundo</p>
+        </footer>
+    </div>
+
+    <script>
+        class TerritorySelector {
+            constructor() {
+                this.loadTerritories();
+            }
+
+            async loadTerritories() {
+                try {
+                    const response = await fetch('territorios/config.json');
+                    const config = await response.json();
+                    this.renderTerritories(config.territorios);
+                } catch (error) {
+                    console.error('Error cargando territorios:', error);
+                    this.showError();
+                }
+            }
+
+            renderTerritories(territorios) {
+                const grid = document.getElementById('territoriesGrid');
+                
+                territorios.forEach(territorio => {
+                    if (territorio.activo) {
+                        const card = this.createTerritoryCard(territorio);
+                        grid.appendChild(card);
+                    }
+                });
+            }
+
+            createTerritoryCard(territorio) {
+                const card = document.createElement('div');
+                card.className = 'territory-card';
+                
+                card.innerHTML = `
+                    <div class="card-image">
+                        <img src="${territorio.thumbnail || 'images/default-territory.jpg'}" alt="${territorio.nombre}">
+                        <div class="card-overlay">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>${territorio.nombre}</h3>
+                        <p>${territorio.descripcion}</p>
+                        <div class="card-stats">
+                            <span><i class="fas fa-map-pin"></i> ${territorio.estadisticas.totalPOIs} POIs</span>
+                            <span><i class="fas fa-route"></i> ${territorio.estadisticas.totalRutas} rutas</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-primary" onclick="this.navigateToTerritory('${territorio.id}')">
+                                <i class="fas fa-compass"></i> Explorar
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => this.navigateToTerritory(territorio.id));
+                
+                return card;
+            }
+
+            navigateToTerritory(territoryId) {
+                window.location.href = `territorio.html?id=${territoryId}`;
+            }
+
+            showError() {
+                const grid = document.getElementById('territoriesGrid');
+                grid.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Error al cargar territorios</h3>
+                        <p>No se pudieron cargar los territorios disponibles. Por favor, intenta nuevamente.</p>
+                        <button onclick="window.location.reload()" class="btn-primary">
+                            <i class="fas fa-redo"></i> Reintentar
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // Inicializar el selector cuando se carga la página
+        document.addEventListener('DOMContentLoaded', () => {
+            new TerritorySelector();
+        });
+    </script>
+</body>
+</html>

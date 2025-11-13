@@ -6,7 +6,9 @@
  */
 
 class GuiaVirtual {
-    constructor() {
+    constructor(territoryId = 'la-floresta', territoryData = null) {
+        this.territoryId = territoryId;
+        this.territoryData = territoryData;
         this.territorio = null;
         this.puntosInteres = null;
         this.rutasCalles = null;
@@ -59,25 +61,37 @@ class GuiaVirtual {
      * Carga los datos del territorio desde archivos JSON
      */
     async cargarDatos() {
-        console.log("📡 Cargando datos del territorio...");
+        console.log(`📡 Cargando datos del territorio: ${this.territoryId}...`);
         
         try {
+            // Si tenemos datos del territorio, usar sus archivos
+            let poisFile, rutasFile;
+            
+            if (this.territoryData && this.territoryData.archivos) {
+                poisFile = this.territoryData.archivos.pois;
+                rutasFile = this.territoryData.archivos.rutas;
+            } else {
+                // Fallback a La Floresta por defecto
+                poisFile = './data/la-floresta-pois.json';
+                rutasFile = './data/la-floresta-rutas.json';
+            }
+            
             // Cargar POIs
-            const responsePois = await fetch('./data/la-floresta-pois.json');
+            const responsePois = await fetch(poisFile);
             if (!responsePois.ok) throw new Error(`Error HTTP: ${responsePois.status}`);
             const dataPois = await responsePois.json();
             
             // Cargar rutas
-            const responseRutas = await fetch('./data/la-floresta-rutas.json');
+            const responseRutas = await fetch(rutasFile);
             if (!responseRutas.ok) throw new Error(`Error HTTP: ${responseRutas.status}`);
             const dataRutas = await responseRutas.json();
             
             this.territorio = dataPois.territorio;
-            this.puntosInteres = dataPois.puntos;
+            this.puntosInteres = dataPois.features;
             this.rutasCalles = dataRutas.rutas;
             
             console.log(`📍 Territorio cargado: ${this.territorio.nombre}`);
-            console.log(`🗺️ ${this.puntosInteres.features.length} puntos de interés`);
+            console.log(`🗺️ ${this.puntosInteres.length} puntos de interés`);
             console.log(`🛣️ ${Object.keys(this.rutasCalles).length} rutas por calles`);
             
         } catch (error) {
@@ -229,7 +243,7 @@ class GuiaVirtual {
      * Dibujar ruta completa que sigue las calles
      */
     dibujarRutaCompleta() {
-        const puntosOrdenados = this.puntosInteres.features.sort((a, b) => 
+        const puntosOrdenados = this.puntosInteres.sort((a, b) => 
             a.properties.orden - b.properties.orden
         );
         
@@ -340,7 +354,7 @@ class GuiaVirtual {
     revisarProximidad(lat, lon) {
         const miPosicion = L.latLng(lat, lon);
         
-        for (const feature of this.puntosInteres.features) {
+        for (const feature of this.puntosInteres) {
             const coordsPunto = feature.geometry.coordinates;
             const posPunto = L.latLng(coordsPunto[1], coordsPunto[0]);
             const distancia = this.mapa.distance(miPosicion, posPunto);
@@ -500,7 +514,7 @@ class GuiaVirtual {
      * Encontrar siguiente punto en el recorrido
      */
     encontrarSiguientePunto(ordenActual) {
-        return this.puntosInteres.features.find(f => f.properties.orden === ordenActual + 1);
+        return this.puntosInteres.find(f => f.properties.orden === ordenActual + 1);
     }
     
     /**
@@ -617,7 +631,7 @@ class GuiaVirtual {
         let puntoAnterior = null;
         let mayorOrden = 0;
         
-        for (const feature of this.puntosInteres.features) {
+        for (const feature of this.puntosInteres) {
             if (feature.properties.visitado && 
                 feature.properties.orden < ordenDestino && 
                 feature.properties.orden > mayorOrden) {

@@ -1,46 +1,71 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Guía Virtual - La Floresta</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Librerías externas -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
-    <!-- Font Awesome para iconos bonitos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    
-    <!-- Estilos locales -->
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  
-  <body>
-    <div id="map"></div>
-    
-    <!-- Panel de instrucciones para testing -->
-    <div id="testing-panel">
-      <h3>🎮 Modo Testing</h3>
-      <div class="testing-instructions">
-        <strong>Presiona 'T'</strong> para activar testing
-      </div>
-      <div class="testing-instructions">
-        Luego usa las flechas:<br>
-        ⬆️ ⬇️ ⬅️ ➡️ (≈5m cada clic)
-      </div>
-      <div class="testing-instructions">
-        <small>🔊 Audio: 👨 Hombre (descripción) + 👩 Mujer (navegación)</small>
-      </div>
-      <div class="testing-instructions">
-        <small>🎯 Visual: 🟠 Siguiente punto + 🔗 Ruta azul</small>
-      </div>
-      <div id="testing-status" class="testing-status" style="display: none;">
-        ✅ Modo Testing Activo
-      </div>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Virtual</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .redirect-container {
+            text-align: center;
+            padding: 40px;
+        }
+        .redirect-container h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+        .redirect-container p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="redirect-container">
+        <h1><i class="fas fa-map-marked-alt"></i> Guía Virtual</h1>
+        <p>Redirigiendo al selector de territorios...</p>
+        <div class="spinner"></div>
     </div>
 
-    <!-- JavaScript de la aplicación -->
-    <script src="./js/app.js"></script>
-  </body>
+    <script>
+        // Redireccionar automáticamente al selector después de 2 segundos
+        setTimeout(() => {
+            window.location.href = 'selector.html';
+        }, 2000);
+
+        // También permitir redirección inmediata al hacer click
+        document.addEventListener('click', () => {
+            window.location.href = 'selector.html';
+        });
+    </script>
+</body>
 </html>

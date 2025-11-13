@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Virtual - Territorio</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Panel de Navegación -->
+    <div id="navPanel">
+        <div class="nav-header">
+            <button id="backToSelector" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Territorios
+            </button>
+            <h1 id="territoryTitle">Cargando...</h1>
+        </div>
+        <div class="nav-controls">
+            <button id="btnMiUbicacion" class="nav-btn">
+                <i class="fas fa-location-dot"></i> Mi Ubicación
+            </button>
+            <button id="btnSiguiente" class="nav-btn primary">
+                <i class="fas fa-play"></i> Siguiente
+            </button>
+            <button id="btnAudio" class="nav-btn">
+                <i class="fas fa-volume-up"></i> Audio
+            </button>
+        </div>
+    </div>
+
+    <!-- Mapa -->
+    <div id="mapa"></div>
+
+    <!-- Panel de Información -->
+    <div id="infoPanel" class="info-panel hidden">
+        <div class="info-header">
+            <h3 id="poiNombre">Punto de Interés</h3>
+            <button id="btnCerrarInfo" class="close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="info-content">
+            <div id="poiImagen" class="poi-image"></div>
+            <div id="poiDescripcion" class="poi-description"></div>
+            <div id="poiInformacion" class="poi-information"></div>
+        </div>
+        <div class="info-actions">
+            <button id="btnAudioPoi" class="info-btn">
+                <i class="fas fa-play"></i> Escuchar Audio
+            </button>
+            <button id="btnNavegar" class="info-btn primary">
+                <i class="fas fa-route"></i> Ir a este lugar
+            </button>
+        </div>
+    </div>
+
+    <!-- Panel de Testing (oculto en producción) -->
+    <div id="testingPanel" class="testing-panel hidden">
+        <h4>Panel de Testing</h4>
+        <div class="testing-controls">
+            <button onclick="window.guia.mostrarTodosPOIs()">Mostrar todos los POIs</button>
+            <button onclick="window.guia.probarAudio()">Probar Audio</button>
+            <button onclick="window.guia.centrarMapa()">Centrar Mapa</button>
+        </div>
+        <div id="debugInfo"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Obtener ID del territorio desde URL
+            const urlParams = new URLSearchParams(window.location.search);
+            let territoryId = urlParams.get('id');
+            
+            // Si no hay ID específico, usar La Floresta por defecto
+            if (!territoryId) {
+                territoryId = 'la-floresta';
+            }
+
+            try {
+                // Cargar configuración de territorios
+                const response = await fetch('territorios/config.json');
+                const config = await response.json();
+                
+                // Encontrar el territorio
+                const territory = config.territorios.find(t => t.id === territoryId);
+                
+                if (!territory) {
+                    throw new Error(`Territorio ${territoryId} no encontrado`);
+                }
+
+                // Actualizar título
+                document.getElementById('territoryTitle').textContent = territory.nombre;
+                document.title = `Guía Virtual - ${territory.nombre}`;
+
+                // Inicializar la guía con el territorio específico
+                window.guia = new GuiaVirtual(territoryId, territory);
+                
+                // Configurar botón de regreso
+                document.getElementById('backToSelector').addEventListener('click', () => {
+                    window.location.href = 'selector.html';
+                });
+
+            } catch (error) {
+                console.error('Error cargando territorio:', error);
+                alert(`Error: No se pudo cargar el territorio ${territoryId}`);
+                window.location.href = 'selector.html';
+            }
+        });
+    </script>
+</body>
+</html>
