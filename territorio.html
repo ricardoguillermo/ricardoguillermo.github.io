@@ -101,7 +101,18 @@
                 document.title = `Guía Virtual - ${territory.nombre}`;
 
                 // Inicializar la guía con el territorio específico
-                window.guia = new GuiaVirtual(territoryId, territory);
+                try {
+                    window.guia = new GuiaVirtual(territoryId, territory);
+                    console.log('✅ GuiaVirtual inicializada correctamente');
+                } catch (guiaError) {
+                    console.error('❌ Error en GuiaVirtual:', guiaError);
+                    // No redirigir automáticamente, permitir que se vea el error específico
+                    document.body.innerHTML += `<div style="position:fixed;top:0;left:0;right:0;background:red;color:white;padding:20px;z-index:9999;">
+                        ERROR: ${guiaError.message}<br>
+                        <button onclick="window.location.href='selector.html'">Volver al Selector</button>
+                        <button onclick="this.parentElement.style.display='none'">Ocultar Error</button>
+                    </div>`;
+                }
                 
                 // Configurar botón de regreso
                 document.getElementById('backToSelector').addEventListener('click', () => {
@@ -109,9 +120,17 @@
                 });
 
             } catch (error) {
-                console.error('Error cargando territorio:', error);
-                alert(`Error: No se pudo cargar el territorio ${territoryId}`);
-                window.location.href = 'selector.html';
+                console.error('❌ Error cargando configuración territorio:', error);
+                document.body.innerHTML = `<div style="padding:20px;text-align:center;">
+                    <h2>Error al cargar territorio</h2>
+                    <p>Error: ${error.message}</p>
+                    <button onclick="window.location.href='selector.html'" style="padding:10px 20px;background:#007bff;color:white;border:none;border-radius:5px;">
+                        Volver al Selector
+                    </button>
+                    <button onclick="window.location.reload()" style="padding:10px 20px;background:#28a745;color:white;border:none;border-radius:5px;margin-left:10px;">
+                        Reintentar
+                    </button>
+                </div>`;
             }
         });
     </script>
