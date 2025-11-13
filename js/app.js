@@ -162,6 +162,21 @@ class GuiaVirtual {
     inicializarMapa() {
         console.log("🗺️ Inicializando mapa...");
         
+        // Verificar que el elemento del mapa existe
+        const mapElement = document.getElementById("map");
+        if (!mapElement) {
+            throw new Error("❌ Elemento del mapa no encontrado. DOM no está listo.");
+        }
+        
+        console.log("✅ Elemento del mapa encontrado:", mapElement);
+        
+        // Verificar que el territorio está cargado
+        if (!this.territorio || !this.territorio.centro) {
+            throw new Error("❌ Datos del territorio no están cargados correctamente.");
+        }
+        
+        console.log("✅ Territorio cargado:", this.territorio);
+        
         // Crear mapa centrado en el territorio
         this.mapa = L.map("map").setView(this.territorio.centro, this.territorio.zoom);
         
