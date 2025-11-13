@@ -179,6 +179,19 @@ class GuiaVirtual {
         
         console.log("✅ Territorio cargado:", this.territorio);
         
+        // Limpiar mapa existente si existe
+        if (this.mapa) {
+            console.log("🧹 Limpiando mapa existente...");
+            this.mapa.remove();
+            this.mapa = null;
+        }
+        
+        // Verificar si ya hay una instancia de mapa en el elemento
+        if (mapElement._leaflet_id) {
+            console.log("🧹 Eliminando instancia previa de Leaflet...");
+            mapElement._leaflet_id = null;
+        }
+        
         // Crear mapa centrado en el territorio
         this.mapa = L.map("map").setView(this.territorio.centro, this.territorio.zoom);
         
@@ -826,7 +839,5 @@ class GuiaVirtual {
     }
 }
 
-// Inicializar la aplicación cuando se carga la página
-document.addEventListener('DOMContentLoaded', () => {
-    window.guiaVirtual = new GuiaVirtual();
-});
+// Nota: La inicialización se maneja desde territorio.html
+// No crear instancia automática aquí para evitar conflictos
