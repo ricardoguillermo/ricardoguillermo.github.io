@@ -8,8 +8,8 @@
       "centro": [-34.757, -55.665],
       "zoom": 16,
       "archivos": {
-        "pois": "./data/la-floresta-pois.json",
-        "rutas": "./data/la-floresta-rutas.json"
+        "pois": "./territorios/la-floresta/pois.json",
+        "rutas": "./territorios/la-floresta/rutas.json"
       },
       "estadisticas": {
         "totalPOIs": 12,
@@ -27,13 +27,32 @@
       "centro": [-34.8167, -55.5833],
       "zoom": 15,
       "archivos": {
-        "pois": "./data/costa-azul-guazubira-pois.json",
-        "rutas": "./data/costa-azul-guazubira-rutas.json"
+        "pois": "./territorios/costa-azul-guazubira/pois.json",
+        "rutas": "./territorios/costa-azul-guazubira/rutas.json"
       },
       "estadisticas": {
         "totalPOIs": 10,
         "totalRutas": 9,
         "duracion_estimada": "40-55 minutos",
+        "dificultad": "Fácil"
+      },
+      "activo": true
+    },
+    {
+      "id": "atlantida",
+      "nombre": "Atlántida",
+      "descripcion": "Ciudad balnearia emblemática de Canelones, Uruguay",
+      "thumbnail": "./assets/thumbnails/atlantida.jpg",
+      "centro": [-34.7733, -55.7467],
+      "zoom": 15,
+      "archivos": {
+        "pois": "./territorios/atlantida/pois.json",
+        "rutas": "./territorios/atlantida/rutas.json"
+      },
+      "estadisticas": {
+        "totalPOIs": 12,
+        "totalRutas": 11,
+        "duracion_estimada": "60-75 minutos",
         "dificultad": "Fácil"
       },
       "activo": true

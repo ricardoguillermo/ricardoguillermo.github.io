@@ -1,0 +1,118 @@
+{
+  "territorio": "costa-azul-guazubira",
+  "descripcion": "Rutas entre puntos de interés de Costa Azul - Guazubira",
+  "rutas": {
+    "1_2": {
+      "desde": "poi_1",
+      "hasta": "poi_2", 
+      "descripcion": "Desde Playa Costa Azul hasta Rambla Costanera",
+      "coordenadas": [
+        [-55.5850, -34.8150],
+        [-55.5845, -34.8148],
+        [-55.5840, -34.8145],
+        [-55.5835, -34.8142],
+        [-55.5830, -34.8140]
+      ]
+    },
+    "2_3": {
+      "desde": "poi_2",
+      "hasta": "poi_3",
+      "descripcion": "Desde Rambla Costanera hasta Puerto de Pescadores",
+      "coordenadas": [
+        [-55.5830, -34.8140],
+        [-55.5825, -34.8138],
+        [-55.5820, -34.8135],
+        [-55.5815, -34.8132],
+        [-55.5810, -34.8130]
+      ]
+    },
+    "3_4": {
+      "desde": "poi_3",
+      "hasta": "poi_4",
+      "descripcion": "Desde Puerto de Pescadores hasta Restaurante El Balcón",
+      "coordenadas": [
+        [-55.5810, -34.8130],
+        [-55.5812, -34.8135],
+        [-55.5815, -34.8140],
+        [-55.5818, -34.8142],
+        [-55.5820, -34.8145]
+      ]
+    },
+    "4_5": {
+      "desde": "poi_4",
+      "hasta": "poi_5",
+      "descripcion": "Desde Restaurante El Balcón hasta Mirador de las Gaviotas",
+      "coordenadas": [
+        [-55.5820, -34.8145],
+        [-55.5815, -34.8140],
+        [-55.5810, -34.8135],
+        [-55.5805, -34.8128],
+        [-55.5800, -34.8120]
+      ]
+    },
+    "5_6": {
+      "desde": "poi_5", 
+      "hasta": "poi_6",
+      "descripcion": "Desde Mirador de las Gaviotas hasta Camping Costa Azul",
+      "coordenadas": [
+        [-55.5800, -34.8120],
+        [-55.5810, -34.8130],
+        [-55.5820, -34.8140],
+        [-55.5830, -34.8148],
+        [-55.5840, -34.8152],
+        [-55.5850, -34.8156],
+        [-55.5860, -34.8160]
+      ]
+    },
+    "6_7": {
+      "desde": "poi_6",
+      "hasta": "poi_7",
+      "descripcion": "Desde Camping Costa Azul hasta Iglesia San José",
+      "coordenadas": [
+        [-55.5860, -34.8160],
+        [-55.5855, -34.8165],
+        [-55.5850, -34.8170],
+        [-55.5845, -34.8175],
+        [-55.5840, -34.8180]
+      ]
+    },
+    "7_8": {
+      "desde": "poi_7",
+      "hasta": "poi_8",
+      "descripcion": "Desde Iglesia San José hasta Mercado de Artesanías",
+      "coordenadas": [
+        [-55.5840, -34.8180],
+        [-55.5838, -34.8178],
+        [-55.5835, -34.8175],
+        [-55.5830, -34.8172],
+        [-55.5825, -34.8170]
+      ]
+    },
+    "8_9": {
+      "desde": "poi_8",
+      "hasta": "poi_9", 
+      "descripcion": "Desde Mercado de Artesanías hasta Parque Guazubira",
+      "coordenadas": [
+        [-55.5825, -34.8170],
+        [-55.5830, -34.8175],
+        [-55.5835, -34.8180],
+        [-55.5840, -34.8185],
+        [-55.5845, -34.8190]
+      ]
+    },
+    "9_10": {
+      "desde": "poi_9",
+      "hasta": "poi_10",
+      "descripcion": "Desde Parque Guazubira hasta Faro Costa Azul",
+      "coordenadas": [
+        [-55.5845, -34.8190],
+        [-55.5835, -34.8180],
+        [-55.5825, -34.8170],
+        [-55.5815, -34.8155],
+        [-55.5805, -34.8140],
+        [-55.5795, -34.8125],
+        [-55.5790, -34.8110]
+      ]
+    }
+  }
+}

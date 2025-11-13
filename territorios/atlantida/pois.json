@@ -1,0 +1,204 @@
+{
+  "tipo": "FeatureCollection",
+  "territorio": {
+    "id": "atlantida",
+    "nombre": "Atlántida",
+    "descripcion": "Ciudad balnearia emblemática de Canelones, Uruguay",
+    "centro": [-34.7733, -55.7467],
+    "zoom": 15
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_1",
+        "nombre": "Estación de Trenes de Atlántida",
+        "categoria": "historico",
+        "descripcion": "Histórica estación ferroviaria que conecta Atlántida con Montevideo desde 1895.",
+        "informacion": "La estación es parte del patrimonio histórico de la ciudad y sigue siendo una importante puerta de entrada para los visitantes.",
+        "audio": "./audio/atlantida/estacion_trenes.mp3",
+        "imagen": "./images/atlantida/estacion_trenes.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.7485, -34.7755]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_2",
+        "nombre": "Plaza Artigas de Atlántida",
+        "categoria": "plaza",
+        "descripcion": "Plaza principal de Atlántida con hermosos jardines y zona de esparcimiento.",
+        "informacion": "Es el corazón social de la ciudad, donde se realizan eventos culturales y encuentros comunitarios.",
+        "audio": "./audio/atlantida/plaza_artigas.mp3",
+        "imagen": "./images/atlantida/plaza_artigas.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.7470, -34.7740]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_3",
+        "nombre": "Playa de Atlántida",
+        "categoria": "playa",
+        "descripcion": "Extensa playa de arena fina ideal para disfrutar del sol y deportes acuáticos.",
+        "informacion": "Una de las playas más populares de la costa este uruguaya, reconocida por sus aguas tranquilas y servicios completos.",
+        "audio": "./audio/atlantida/playa_atlantida.mp3",
+        "imagen": "./images/atlantida/playa_atlantida.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.7450, -34.7700]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_4",
+        "nombre": "Rambla Costanera de Atlántida",
+        "categoria": "naturaleza",
+        "descripcion": "Hermosa rambla que bordea la costa ofreciendo vistas panorámicas del Río de la Plata.",
+        "informacion": "Ideal para caminatas, ciclismo y contemplar hermosos atardeceres junto al agua.",
+        "audio": "./audio/atlantida/rambla_costanera.mp3",
+        "imagen": "./images/atlantida/rambla_costanera.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.7440, -34.7690]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_5",
+        "nombre": "Parque Rodó de Atlántida",
+        "categoria": "naturaleza",
+        "descripcion": "Amplio parque con áreas verdes, juegos infantiles y espacios para picnic.",
+        "informacion": "Un pulmón verde en el centro de la ciudad, perfecto para el descanso familiar y actividades recreativas.",
+        "audio": "./audio/atlantida/parque_rodo.mp3",
+        "imagen": "./images/atlantida/parque_rodo.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.7480, -34.7730]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_6",
+        "nombre": "Centro Comercial de Atlántida",
+        "categoria": "comercial",
+        "descripcion": "Zona comercial principal con tiendas, restaurantes y servicios turísticos.",
+        "informacion": "El corazón comercial de la ciudad donde se concentra la actividad económica y turística.",
+        "audio": "./audio/atlantida/centro_comercial.mp3",
+        "imagen": "./images/atlantida/centro_comercial.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.7465, -34.7745]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_7",
+        "nombre": "Club de Golf Atlántida",
+        "categoria": "deportivo",
+        "descripcion": "Prestigioso club de golf con cancha de 18 hoyos y hermosas instalaciones.",
+        "informacion": "Uno de los clubes de golf más antiguos del Uruguay, fundado en 1920, con vista al Río de la Plata.",
+        "audio": "./audio/atlantida/club_golf.mp3",
+        "imagen": "./images/atlantida/club_golf.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.7500, -34.7720]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_8",
+        "nombre": "Iglesia San Francisco de Asís",
+        "categoria": "cultural",
+        "descripcion": "Hermosa iglesia católica construida en estilo neogótico a principios del siglo XX.",
+        "informacion": "Un importante centro espiritual de la comunidad con arquitectura destacada y rica historia.",
+        "audio": "./audio/atlantida/iglesia_san_francisco.mp3",
+        "imagen": "./images/atlantida/iglesia_san_francisco.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.7475, -34.7750]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_9",
+        "nombre": "Museo del Automóvil",
+        "categoria": "cultural",
+        "descripcion": "Único museo dedicado a la historia del automóvil en Uruguay con colección vintage.",
+        "informacion": "Exhibe una impresionante colección de vehículos históricos y cuenta la evolución del transporte motorizado.",
+        "audio": "./audio/atlantida/museo_automovil.mp3",
+        "imagen": "./images/atlantida/museo_automovil.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.7460, -34.7760]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_10",
+        "nombre": "Puerto de Yates Atlántida",
+        "categoria": "deportivo",
+        "descripcion": "Moderno puerto deportivo con servicios completos para embarcaciones de recreo.",
+        "informacion": "Centro de actividades náuticas con marina, escuela de vela y servicios para navegantes.",
+        "audio": "./audio/atlantida/puerto_yates.mp3",
+        "imagen": "./images/atlantida/puerto_yates.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.7420, -34.7680]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_11",
+        "nombre": "Faro de Atlántida",
+        "categoria": "historico",
+        "descripcion": "Histórico faro que guía a los navegantes desde 1912, símbolo de la ciudad.",
+        "informacion": "Un ícono de Atlántida que ofrece vistas panorámicas de la costa y funciona como museo marítimo.",
+        "audio": "./audio/atlantida/faro_atlantida.mp3",
+        "imagen": "./images/atlantida/faro_atlantida.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.7400, -34.7670]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_12",
+        "nombre": "Casino Atlántida",
+        "categoria": "entretenimiento",
+        "descripcion": "Elegante casino y centro de entretenimiento con vista al mar.",
+        "informacion": "Ofrece juegos, espectáculos y gastronomía de primera calidad en un ambiente sofisticado.",
+        "audio": "./audio/atlantida/casino_atlantida.mp3",
+        "imagen": "./images/atlantida/casino_atlantida.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.7445, -34.7705]
+      }
+    }
+  ]
+}
