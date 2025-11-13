@@ -76,14 +76,19 @@ class GuiaVirtual {
                 rutasFile = './data/la-floresta-rutas.json';
             }
             
+            console.log(`🔍 Cargando POIs desde: ${poisFile}`);
+            console.log(`🔍 Cargando rutas desde: ${rutasFile}`);
+            
             // Cargar POIs
             const responsePois = await fetch(poisFile);
-            if (!responsePois.ok) throw new Error(`Error HTTP: ${responsePois.status}`);
+            if (!responsePois.ok) throw new Error(`Error HTTP POIs ${responsePois.status}: ${poisFile}`);
             const dataPois = await responsePois.json();
+            
+            console.log(`📋 Estructura POIs:`, dataPois);
             
             // Cargar rutas
             const responseRutas = await fetch(rutasFile);
-            if (!responseRutas.ok) throw new Error(`Error HTTP: ${responseRutas.status}`);
+            if (!responseRutas.ok) throw new Error(`Error HTTP rutas ${responseRutas.status}: ${rutasFile}`);
             const dataRutas = await responseRutas.json();
             
             this.territorio = dataPois.territorio;
@@ -95,7 +100,8 @@ class GuiaVirtual {
             console.log(`🛣️ ${Object.keys(this.rutasCalles).length} rutas por calles`);
             
         } catch (error) {
-            console.error("❌ Error al cargar datos:", error);
+            console.error('❌ Error cargando datos del territorio:', error);
+            console.error('Stack trace:', error.stack);
             throw error;
         }
     }
