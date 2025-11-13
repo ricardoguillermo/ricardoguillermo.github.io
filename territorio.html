@@ -88,6 +88,10 @@
                 // Encontrar el territorio
                 const territory = config.territorios.find(t => t.id === territoryId);
                 
+                console.log('🔍 Territorio solicitado:', territoryId);
+                console.log('📋 Configuración cargada:', config);
+                console.log('🎯 Territorio encontrado:', territory);
+                
                 if (!territory) {
                     throw new Error(`Territorio ${territoryId} no encontrado`);
                 }
