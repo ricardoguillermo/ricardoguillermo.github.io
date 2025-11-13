@@ -53,7 +53,9 @@ class GuiaVirtual {
             console.log("✅ Guía Virtual inicializada correctamente");
         } catch (error) {
             console.error("❌ Error al inicializar:", error);
-            alert("Error al cargar los datos del territorio. Por favor, recarga la página.");
+            console.error("Stack trace completo:", error.stack);
+            // No mostrar alert automáticamente, permitir manejo en territorio.html
+            throw error;
         }
     }
     
