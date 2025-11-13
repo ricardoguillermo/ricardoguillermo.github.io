@@ -4,7 +4,7 @@
     "id": "costa-azul-guazubira",
     "nombre": "Costa Azul - Guazubira",
     "descripcion": "Hermosa costa atlántica de Canelones, Uruguay",
-    "centro": [-34.8167,-55.5833],
+    "centro": [,-34.8167,-55.5833],
     "zoom": 15
   },
   "features": [
@@ -21,7 +21,8 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-55.5850, -34.8150]
+        "coordinates": [-55.66129236944243, -34.76057835472743]
+       
       }
     },
     {
@@ -37,7 +38,8 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-55.5830, -34.8140]
+        "coordinates": [-55.64432158545293, -34.77629300769773]
+       
       }
     },
     {
@@ -53,7 +55,8 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-55.5810, -34.8130]
+        "coordinates": [-55.658547562935794, -34.772898644259755]
+        
       }
     },
     {
@@ -78,14 +81,15 @@
         "id": "poi_5",
         "nombre": "Mirador de las Gaviotas",
         "categoria": "naturaleza",
-        "descripcion": "Punto elevado con vista espectacular de la costa y lugar de anidación de gaviotas.",
+        "descripcion": "Bolazo Punto elevado con vista espectacular de la costa y lugar de anidación de gaviotas.",
         "informacion": "Desde aquí se puede apreciar toda la extensión de la costa y observar la fauna marina, especialmente las gaviotas.",
         "audio": "./audio/costa-azul-guazubira/mirador_gaviotas.mp3",
         "imagen": "./images/costa-azul-guazubira/mirador_gaviotas.jpg"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-55.5800, -34.8120]
+        "coordinates": [ -55.66213214466833, -34.76650733858073]
+        
       }
     },
     {
@@ -94,14 +98,15 @@
         "id": "poi_6",
         "nombre": "Camping Costa Azul",
         "categoria": "alojamiento",
-        "descripcion": "Camping con todas las comodidades a pocos metros de la playa.",
+        "descripcion": "Bolazo de prueba Camping con todas las comodidades a pocos metros de la playa.",
         "informacion": "Ofrece espacios para carpas y cabañas, con servicios completos incluyendo baños, duchas y parrilleros.",
         "audio": "./audio/costa-azul-guazubira/camping_costa_azul.mp3",
         "imagen": "./images/costa-azul-guazubira/camping_costa_azul.jpg"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-55.5860, -34.8160]
+        "coordinates": [-55.65092904348533, -34.77597635627623]
+       
       }
     },
     {
@@ -117,7 +122,8 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-55.5840, -34.8180]
+        "coordinates": [-55.655575999730495, -34.769877322787174]
+        
       }
     },
     {
@@ -133,7 +139,8 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-55.5825, -34.8170]
+        "coordinates": [-55.65902331466868, -34.768881845435835]
+        
       }
     },
     {
@@ -149,7 +156,8 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-55.5845, -34.8190]
+        "coordinates": [-55.63453437354691, -34.76837561352398]
+       
       }
     },
     {
@@ -158,14 +166,15 @@
         "id": "poi_10",
         "nombre": "Faro Costa Azul",
         "categoria": "historico",
-        "descripcion": "Faro histórico que guía a las embarcaciones desde 1935.",
+        "descripcion": "Bolazo Faro histórico que guía a las embarcaciones desde 1935.",
         "informacion": "Este faro ha sido testigo de la evolución del balneario y sigue funcionando para orientar a los navegantes.",
         "audio": "./audio/costa-azul-guazubira/faro_costa_azul.mp3",
         "imagen": "./images/costa-azul-guazubira/faro_costa_azul.jpg"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-55.5790, -34.8110]
+        "coordinates": [-55.65009830521306, -34.778541087811554]
+       
       }
     }
   ]
