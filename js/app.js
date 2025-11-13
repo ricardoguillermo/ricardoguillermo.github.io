@@ -66,17 +66,13 @@ class GuiaVirtual {
         console.log(`📡 Cargando datos del territorio: ${this.territoryId}...`);
         
         try {
-            // Si tenemos datos del territorio, usar sus archivos
-            let poisFile, rutasFile;
-            
-            if (this.territoryData && this.territoryData.archivos) {
-                poisFile = this.territoryData.archivos.pois;
-                rutasFile = this.territoryData.archivos.rutas;
-            } else {
-                // Fallback a La Floresta por defecto
-                poisFile = './data/la-floresta-pois.json';
-                rutasFile = './data/la-floresta-rutas.json';
+            // Verificar que se pasaron los datos del territorio
+            if (!this.territoryData || !this.territoryData.archivos) {
+                throw new Error(`❌ Datos del territorio no proporcionados correctamente. ID: ${this.territoryId}`);
             }
+            
+            const poisFile = this.territoryData.archivos.pois;
+            const rutasFile = this.territoryData.archivos.rutas;
             
             console.log(`🔍 Cargando POIs desde: ${poisFile}`);
             console.log(`🔍 Cargando rutas desde: ${rutasFile}`);
@@ -179,18 +175,32 @@ class GuiaVirtual {
         
         console.log("✅ Territorio cargado:", this.territorio);
         
-        // Limpiar mapa existente si existe
+        // LIMPIEZA AGRESIVA DEL MAPA EXISTENTE
         if (this.mapa) {
             console.log("🧹 Limpiando mapa existente...");
             this.mapa.remove();
             this.mapa = null;
         }
         
-        // Verificar si ya hay una instancia de mapa en el elemento
+        // Limpiar cualquier instancia previa de Leaflet en el elemento
         if (mapElement._leaflet_id) {
-            console.log("🧹 Eliminando instancia previa de Leaflet...");
-            mapElement._leaflet_id = null;
+            console.log("🧹 Eliminando ID de Leaflet...");
+            delete mapElement._leaflet_id;
         }
+        
+        // Limpiar completamente el contenido del div
+        mapElement.innerHTML = '';
+        mapElement.className = '';
+        
+        // Remover todos los atributos relacionados con Leaflet
+        const leafletAttrs = ['tabindex', 'style'];
+        leafletAttrs.forEach(attr => {
+            if (mapElement.hasAttribute(attr)) {
+                mapElement.removeAttribute(attr);
+            }
+        });
+        
+        console.log("🧹 Elemento del mapa completamente limpiado");
         
         // Crear mapa centrado en el territorio
         this.mapa = L.map("map").setView(this.territorio.centro, this.territorio.zoom);

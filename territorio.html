@@ -102,6 +102,16 @@
 
                 // Inicializar la guía con el territorio específico
                 try {
+                    // Verificar si ya hay una instancia y limpiarla
+                    if (window.guia) {
+                        console.log("🧹 Limpiando instancia anterior de GuiaVirtual...");
+                        if (window.guia.mapa) {
+                            window.guia.mapa.remove();
+                        }
+                        window.guia = null;
+                    }
+                    
+                    console.log("🚀 Creando nueva instancia de GuiaVirtual para:", territoryId);
                     window.guia = new GuiaVirtual(territoryId, territory);
                     console.log('✅ GuiaVirtual inicializada correctamente');
                 } catch (guiaError) {
