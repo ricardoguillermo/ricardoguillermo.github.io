@@ -58,7 +58,9 @@
                 
                 card.innerHTML = `
                     <div class="card-image">
-                        <img src="${territorio.thumbnail || 'images/default-territory.jpg'}" alt="${territorio.nombre}">
+                        <img src="${territorio.thumbnail || './assets/thumbnails/default.svg'}" 
+                             alt="${territorio.nombre}"
+                             onerror="this.src='./assets/thumbnails/default.svg'">
                         <div class="card-overlay">
                             <i class="fas fa-play-circle"></i>
                         </div>

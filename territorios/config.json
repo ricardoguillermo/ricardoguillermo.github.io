@@ -4,7 +4,7 @@
       "id": "la-floresta",
       "nombre": "La Floresta",
       "descripcion": "Balneario tradicional de Canelones, Uruguay",
-      "thumbnail": "./assets/thumbnails/la-floresta.jpg",
+      "thumbnail": "./assets/thumbnails/la-floresta.svg",
       "centro": [-34.757, -55.665],
       "zoom": 16,
       "archivos": {
@@ -23,7 +23,7 @@
       "id": "costa-azul-guazubira",
       "nombre": "Costa Azul - Guazubira",
       "descripcion": "Hermosa costa atlántica de Canelones, Uruguay",
-      "thumbnail": "./assets/thumbnails/costa-azul-guazubira.jpg",
+      "thumbnail": "./assets/thumbnails/costa-azul-guazubira.svg",
       "centro": [-34.8167, -55.5833],
       "zoom": 15,
       "archivos": {
@@ -42,7 +42,7 @@
       "id": "atlantida",
       "nombre": "Atlántida",
       "descripcion": "Ciudad balnearia emblemática de Canelones, Uruguay",
-      "thumbnail": "./assets/thumbnails/atlantida.jpg",
+      "thumbnail": "./assets/thumbnails/atlantida.svg",
       "centro": [-34.7733, -55.7467],
       "zoom": 15,
       "archivos": {
@@ -61,7 +61,7 @@
       "id": "ejemplo-futuro", 
       "nombre": "Otro Territorio",
       "descripcion": "Ejemplo de cómo agregar un nuevo territorio",
-      "thumbnail": "./assets/thumbnails/ejemplo.jpg",
+      "thumbnail": "./assets/thumbnails/default.svg",
       "centro": [-34.9, -56.2],
       "zoom": 15,
       "archivos": {
