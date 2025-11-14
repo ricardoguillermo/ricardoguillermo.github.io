@@ -58,11 +58,23 @@
 
     <!-- Panel de Testing (oculto en producción) -->
     <div id="testingPanel" class="testing-panel hidden">
-        <h4>Panel de Testing</h4>
+        <h4><i class="fas fa-gamepad"></i> Panel de Testing</h4>
         <div class="testing-controls">
-            <button onclick="window.guia.mostrarTodosPOIs()">Mostrar todos los POIs</button>
-            <button onclick="window.guia.probarAudio()">Probar Audio</button>
-            <button onclick="window.guia.centrarMapa()">Centrar Mapa</button>
+            <button id="btnToggleTesting" onclick="window.guia.alternarModoTesting()" class="testing-btn start">
+                <i class="fas fa-play"></i> Iniciar Testing
+            </button>
+            <button onclick="window.guia.centrarMapa()" class="testing-btn">
+                <i class="fas fa-crosshairs"></i> Centrar en Territorio
+            </button>
+            <button onclick="window.guia.mostrarTodosPOIs()" class="testing-btn">
+                <i class="fas fa-map-pin"></i> Mostrar todos los POIs
+            </button>
+            <button onclick="window.guia.probarAudio()" class="testing-btn">
+                <i class="fas fa-volume-up"></i> Probar Audio
+            </button>
+        </div>
+        <div id="testing-status" style="display: none;">
+            <i class="fas fa-gamepad"></i> Modo Testing Activo - Usa las flechas del teclado: ⬆️ ⬇️ ⬅️ ➡️
         </div>
         <div id="debugInfo"></div>
     </div>

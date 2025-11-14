@@ -103,6 +103,64 @@ body {
   color: #4CAF50;
   font-weight: bold;
   margin-top: 10px;
+  padding: 8px;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 4px;
+  border-left: 3px solid #4CAF50;
+}
+
+/* Controles del panel de testing */
+.testing-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.testing-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.testing-btn:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.testing-btn:active {
+  transform: translateY(0);
+}
+
+.testing-btn.start {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+}
+
+.testing-btn.start:hover {
+  background: linear-gradient(135deg, #45a049 0%, #3e8e41 100%);
+}
+
+.testing-btn.stop {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+}
+
+.testing-btn.stop:hover {
+  background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+}
+
+.testing-btn i {
+  font-size: 12px;
 }
 
 /* === ESTILOS PARA NOTIFICACIONES === */

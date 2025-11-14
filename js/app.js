@@ -785,7 +785,19 @@ class GuiaVirtual {
             this.posicionTestLon = this.territorio.centro[1];
             
             console.log("🎮 MODO TESTING ACTIVADO");
-            document.getElementById('testing-status').style.display = 'block';
+            
+            // Mostrar indicador de estado
+            const statusElement = document.getElementById('testing-status');
+            if (statusElement) {
+                statusElement.style.display = 'block';
+            }
+            
+            // Actualizar botón
+            const botonTesting = document.getElementById('btnToggleTesting');
+            if (botonTesting) {
+                botonTesting.innerHTML = '<i class="fas fa-stop"></i> Cerrar Testing';
+                botonTesting.className = 'testing-btn stop';
+            }
             
             this.posicionActualUsuario = L.latLng(this.posicionTestLat, this.posicionTestLon);
             
@@ -802,6 +814,8 @@ class GuiaVirtual {
             
             this.mapa.setView([this.posicionTestLat, this.posicionTestLon], this.config.zoomInicial);
             this.revisarProximidad(this.posicionTestLat, this.posicionTestLon);
+            
+            this.mostrarNotificacion("🎮 Modo testing activado - Usa las flechas del teclado", 'success');
         }
     }
     
@@ -846,6 +860,117 @@ class GuiaVirtual {
      */
     mostrarInstrucciones() {
         console.log("💡 Para testing en PC: Presiona 'T' para activar, luego usa las flechas ⬆️⬇️⬅️➡️");
+    }
+    
+    // === FUNCIONES PARA PANEL DE TESTING ===
+    
+    /**
+     * Mostrar todos los POIs en el mapa
+     */
+    mostrarTodosPOIs() {
+        console.log("🗺️ Mostrando todos los POIs");
+        
+        // Abrir todos los popups
+        for (const feature of this.puntosInteres) {
+            const marcador = this.marcadoresLeaflet[feature.properties.id];
+            if (marcador) {
+                marcador.openPopup();
+            }
+        }
+        
+        // Ajustar vista para mostrar todos los POIs
+        const group = new L.featureGroup(Object.values(this.marcadoresLeaflet));
+        this.mapa.fitBounds(group.getBounds().pad(0.1));
+        
+        this.mostrarNotificacion("🗺️ Todos los POIs visibles", 'info');
+    }
+    
+    /**
+     * Probar sistema de audio
+     */
+    probarAudio() {
+        console.log("🔊 Probando sistema de audio");
+        
+        const textoTest = "Prueba de audio del sistema. Las voces están funcionando correctamente.";
+        
+        if ('speechSynthesis' in window) {
+            // Probar voz masculina
+            this.hablarTexto("Voz masculina: " + textoTest, false);
+            
+            // Probar voz femenina después de un tiempo
+            setTimeout(() => {
+                this.hablarTexto("Voz femenina: " + textoTest, true);
+            }, 4000);
+            
+            this.mostrarNotificacion("🔊 Probando voces masculina y femenina", 'info');
+        } else {
+            this.mostrarNotificacion("❌ Síntesis de voz no disponible", 'warning');
+        }
+    }
+    
+    /**
+     * Centrar mapa en el territorio actual
+     */
+    centrarMapa() {
+        console.log("🎯 Centrando mapa en territorio:", this.territorio.nombre);
+        
+        if (this.territorio && this.territorio.centro) {
+            this.mapa.setView(this.territorio.centro, this.territorio.zoom);
+            
+            // Si está en modo testing, mover la posición test al centro
+            if (this.modoTesting) {
+                this.posicionTestLat = this.territorio.centro[0];
+                this.posicionTestLon = this.territorio.centro[1];
+                this.posicionActualUsuario = L.latLng(this.posicionTestLat, this.posicionTestLon);
+                
+                if (this.marcadorUsuario) {
+                    this.marcadorUsuario.setLatLng(this.posicionActualUsuario);
+                }
+                
+                this.revisarProximidad(this.posicionTestLat, this.posicionTestLon);
+                console.log("📍 Posición de testing actualizada al centro del territorio");
+            }
+            
+            this.mostrarNotificacion(`🎯 Centrado en ${this.territorio.nombre}`, 'success');
+        } else {
+            this.mostrarNotificacion("❌ No se pudo centrar: territorio no cargado", 'warning');
+        }
+    }
+    
+    /**
+     * Alternar modo testing
+     */
+    alternarModoTesting() {
+        if (this.modoTesting) {
+            this.desactivarModoTesting();
+        } else {
+            this.activarModoTesting();
+        }
+    }
+    
+    /**
+     * Desactivar modo testing
+     */
+    desactivarModoTesting() {
+        if (this.modoTesting) {
+            this.modoTesting = false;
+            console.log("🎮 MODO TESTING DESACTIVADO");
+            
+            // Ocultar indicador de estado
+            const statusElement = document.getElementById('testing-status');
+            if (statusElement) {
+                statusElement.style.display = 'none';
+            }
+            
+            // Actualizar botón
+            const botonTesting = document.getElementById('btnToggleTesting');
+            if (botonTesting) {
+                botonTesting.innerHTML = '<i class="fas fa-play"></i> Iniciar Testing';
+                botonTesting.className = 'testing-btn start';
+            }
+            
+            this.mostrarNotificacion("🎮 Modo testing desactivado", 'info');
+        }
     }
 }
 
