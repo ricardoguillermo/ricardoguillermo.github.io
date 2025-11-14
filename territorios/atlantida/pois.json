@@ -4,7 +4,7 @@
     "id": "atlantida",
     "nombre": "Atlántida",
     "descripcion": "Ciudad balnearia emblemática de Canelones, Uruguay",
-    "centro": [-34.7733, -55.7467],
+    "centro": [-34.76649709676629, -55.76437915697094],
     "zoom": 15
   },
   "features": [
