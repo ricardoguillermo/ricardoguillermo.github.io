@@ -32,7 +32,9 @@
 
             async loadTerritories() {
                 try {
-                    const response = await fetch('territorios/config.json');
+                    // Cache busting para forzar actualización
+                    const timestamp = new Date().getTime();
+                    const response = await fetch(`territorios/config.json?v=${timestamp}`);
                     const config = await response.json();
                     this.renderTerritories(config.territorios);
                 } catch (error) {
@@ -56,11 +58,15 @@
                 const card = document.createElement('div');
                 card.className = 'territory-card';
                 
+                // Cache busting para las imágenes
+                const timestamp = new Date().getTime();
+                const thumbnailUrl = territorio.thumbnail ? `${territorio.thumbnail}?v=${timestamp}` : `./assets/thumbnails/default.svg?v=${timestamp}`;
+                
                 card.innerHTML = `
                     <div class="card-image">
-                        <img src="${territorio.thumbnail || './assets/thumbnails/default.svg'}" 
+                        <img src="${thumbnailUrl}" 
                              alt="${territorio.nombre}"
-                             onerror="this.src='./assets/thumbnails/default.svg'">
+                             onerror="this.src='./assets/thumbnails/default.svg?v=${timestamp}'; console.log('Error cargando thumbnail para ${territorio.nombre}');">
                         <div class="card-overlay">
                             <i class="fas fa-play-circle"></i>
                         </div>
