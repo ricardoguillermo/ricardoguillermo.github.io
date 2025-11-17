@@ -4,7 +4,7 @@
     "id": "atlantida",
     "nombre": "Atlántida",
     "descripcion": "Ciudad balnearia emblemática de Canelones, Uruguay",
-    "centro": [-55.76437915697094, -34.76649709676629],
+    "centro": [-34.76649709676629,-55.76437915697094],
     "zoom": 15
   },
   "features": [
@@ -17,7 +17,8 @@
         "descripcion": "Es una de las plazas centrales, ubicada cerca del Casino y la playa. Fue construida en 1971 por el Rotary Club de Atlántida para homenajear a los precursores y fundadores del balneario. Fue remodelada recientemente (en 2024) e incluye una destacada escultura de acero del artista Julio Carné.",
         "informacion": "Revisar",
         "audio": "./audio/atlantida/estacion_trenes.mp3",
-        "imagen": "./images/atlantida/estacion_trenes.jpg"
+        "imagen": "./images/atlantida/estacion_trenes.jpg",
+        "orden": 4
       },
       "geometry": {
         "type": "Point",
@@ -33,7 +34,8 @@
         "descripcion": "Plaza principal de Atlántida con hermosos jardines y zona de esparcimiento.",
         "informacion": "Es el corazón social de la ciudad, donde se realizan eventos culturales y encuentros comunitarios. Nombrada en honor a José Gervasio Artigas, el héroe nacional de Uruguay. Es una plaza histórica, fundada junto con el balneario alrededor de 1911. Su principal atractivo es un gran reloj de sol que fue donado por la marina de guerra de Argentina",
         "audio": "./audio/atlantida/plaza_artigas.mp3",
-        "imagen": "./images/atlantida/plaza_artigas.jpg"
+        "imagen": "./images/atlantida/plaza_artigas.jpg",
+        "orden": 7
       },
       "geometry": {
         "type": "Point",
@@ -49,7 +51,8 @@
         "descripcion": "Lleva el nombre de José Pedro Varela, el sociólogo y reformador que fundó la educación pública moderna en Uruguay (gratuita, laica y obligatoria). Es una plaza de forma triangular que cuenta con juegos infantiles.",
         "informacion": "Revisar",
         "audio": "./audio/atlantida/playa_atlantida.mp3",
-        "imagen": "./images/atlantida/playa_atlantida.jpg"
+        "imagen": "./images/atlantida/playa_atlantida.jpg",
+        "orden": 2
       },
       "geometry": {
         "type": "Point",
@@ -65,7 +68,8 @@
         "descripcion": "Ubicada en una rotonda en la entrada del balneario (Av. de la Circunvalación y Av. Artigas). Es muy conocida por su icónico monumento a la madre, una escultura realizada por José P. Marra.",
         "informacion": "Revisar",
         "audio": "./audio/atlantida/rambla_costanera.mp3",
-        "imagen": "./images/atlantida/rambla_costanera.jpg"
+        "imagen": "./images/atlantida/rambla_costanera.jpg",
+        "orden": 3
       },
       "geometry": {
         "type": "Point",
@@ -81,7 +85,8 @@
         "descripcion": "Una plaza pequeña y triangular que rinde homenaje a los lazos con España. Se caracteriza por tener una pérgola con glicinas, evocando un estilo de patio andaluz.",
         "informacion": "Revisar",
         "audio": "./audio/atlantida/parque_rodo.mp3",
-        "imagen": "./images/atlantida/parque_rodo.jpg"
+        "imagen": "./images/atlantida/parque_rodo.jpg",
+        "orden": 6
       },
       "geometry": {
         "type": "Point",
@@ -97,7 +102,8 @@
         "descripcion": "Aunque muchos la conocen como la Plaza de la Bandera (probablemente por un mástil central), su nombre es Idilio Conde. Fue remodelada alrededor del año 2022.",
         "informacion": "Revisar",
         "audio": "./audio/atlantida/centro_comercial.mp3",
-        "imagen": "./images/atlantida/centro_comercial.jpg"
+        "imagen": "./images/atlantida/centro_comercial.jpg",
+        "orden": 1
       },
       "geometry": {
         "type": "Point",
@@ -112,7 +118,8 @@
         "categoria": "deportivo",
         "descripcion": "Revisar Un espacio verde que funciona como plaza y jardín, ideal para niños.",
         "audio": "./audio/atlantida/club_golf.mp3",
-        "imagen": "./images/atlantida/club_golf.jpg"
+        "imagen": "./images/atlantida/club_golf.jpg",
+        "orden": 5
       },
       "geometry": {
         "type": "Point",
@@ -128,27 +135,12 @@
         "descripcion": "Un parque conocido en la zona para el esparcimiento y recreación.",
         "informacion": "Revisar",
         "audio": "./audio/atlantida/iglesia_san_francisco.mp3",
-        "imagen": "./images/atlantida/iglesia_san_francisco.jpg"
+        "imagen": "./images/atlantida/iglesia_san_francisco.jpg",
+        "orden": 8
       },
       "geometry": {
         "type": "Point",
         "coordinates": [-55.75264939021698, -34.77627192296242]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "poi_9",
-        "nombre": "Plaza El Jardín de Alondra",
-        "categoria": "cultural",
-        "descripcion": "Un espacio verde que funciona como plaza y jardín, ideal para niños.",
-        "informacion": "Revisar",
-        "audio": "./audio/atlantida/museo_automovil.mp3",
-        "imagen": "./images/atlantida/museo_automovil.jpg"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-55.750258550679895, -34.771901105227215]
       }
     },
     {
@@ -160,7 +152,8 @@
         "descripcion": "un centro de recreación infantil o salón de fiestas, conocido por sus juegos inflables.",
         "informacion": "Revisar",
         "audio": "./audio/atlantida/puerto_yates.mp3",
-        "imagen": "./images/atlantida/puerto_yates.jpg"
+        "imagen": "./images/atlantida/puerto_yates.jpg",
+        "orden": 9
       },
       "geometry": {
         "type": "Point",
