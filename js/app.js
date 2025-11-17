@@ -216,6 +216,63 @@ class GuiaVirtual {
         
         // Dibujar ruta completa
         this.dibujarRutaCompleta();
+        
+        // Configurar evento de clic para mostrar coordenadas
+        this.configurarMostrarCoordenadas();
+    }
+    
+    /**
+     * Configurar evento de clic en el mapa para mostrar coordenadas
+     * Similar a Google Maps - muestra las coordenadas del punto clicado
+     */
+    configurarMostrarCoordenadas() {
+        // Variable para almacenar el popup de coordenadas actual
+        this.popupCoordenadas = null;
+        
+        this.mapa.on('click', (e) => {
+            const lat = e.latlng.lat.toFixed(6);
+            const lng = e.latlng.lng.toFixed(6);
+            
+            // Cerrar popup anterior si existe
+            if (this.popupCoordenadas) {
+                this.mapa.closePopup(this.popupCoordenadas);
+            }
+            
+            // Crear contenido del popup con coordenadas
+            const contenidoPopup = `
+                <div class="coordenadas-popup">
+                    <h4><i class="fas fa-map-marker-alt"></i> Coordenadas</h4>
+                    <div class="coordenadas-info">
+                        <p><strong>Latitud:</strong> ${lat}</p>
+                        <p><strong>Longitud:</strong> ${lng}</p>
+                        <small class="coordenadas-formato">Formato: ${lat}, ${lng}</small>
+                    </div>
+                    <div class="coordenadas-acciones">
+                        <button onclick="navigator.clipboard.writeText('${lat}, ${lng}').then(() => {
+                            const btn = this;
+                            const originalText = btn.innerHTML;
+                            btn.innerHTML = '<i class=\\"fas fa-check\\"></i> Copiado!';
+                            setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+                        })" class="btn-copiar-coordenadas">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Crear y mostrar popup en la posición clicada
+            this.popupCoordenadas = L.popup({
+                maxWidth: 280,
+                closeOnClick: false,
+                autoClose: false,
+                className: 'popup-coordenadas'
+            })
+            .setLatLng(e.latlng)
+            .setContent(contenidoPopup)
+            .openOn(this.mapa);
+        });
+        
+        console.log("🎯 Sistema de coordenadas configurado - haz clic en el mapa para ver coordenadas");
     }
     
     /**
