@@ -39,7 +39,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-55.7470, -34.7740]
+        "coordinates": [-55.761677, -34.774464]
       }
     },
     {
@@ -47,7 +47,7 @@
       "properties": {
         "id": "poi_3",
         "nombre": "Plaza  José Pedro Varela",
-        "categoria": "playa",
+        "categoria": "plaza",
         "descripcion": "Lleva el nombre de José Pedro Varela, el sociólogo y reformador que fundó la educación pública moderna en Uruguay (gratuita, laica y obligatoria). Es una plaza de forma triangular que cuenta con juegos infantiles.",
         "informacion": "Revisar",
         "audio": "./audio/atlantida/playa_atlantida.mp3",
@@ -56,7 +56,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-55.7592,-34.7715]
+        "coordinates": [-55.760659,-34.774545]
       }
     },
     {
@@ -73,7 +73,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [ -55.7581,-34.7708]
+        "coordinates": [-55.76324341350519, -34.769381066837944]
       }
     },
     {
@@ -93,28 +93,11 @@
         "coordinates": [-55.7480, -34.7730]
       }
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "poi_6",
-        "nombre": "Plaza Idilio Conde (Plaza de la Bandera)",
-        "categoria": "comercial",
-        "descripcion": "Aunque muchos la conocen como la Plaza de la Bandera (probablemente por un mástil central), su nombre es Idilio Conde. Fue remodelada alrededor del año 2022.",
-        "informacion": "Revisar",
-        "audio": "./audio/atlantida/centro_comercial.mp3",
-        "imagen": "./images/atlantida/centro_comercial.jpg",
-        "orden": 1
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-55.7623,-34.7725]
-      }
-    },
-    {
+      {
       "type": "Feature",
       "properties": {
         "id": "poi_7",
-        "nombre": "Plaza El Jardín de Alondraa",
+        "nombre": "Plaza El Jardín de Alondra",
         "categoria": "deportivo",
         "descripcion": "Revisar Un espacio verde que funciona como plaza y jardín, ideal para niños.",
         "audio": "./audio/atlantida/club_golf.mp3",
@@ -158,6 +141,23 @@
       "geometry": {
         "type": "Point",
         "coordinates": [-55.7550815417141, -34.77319474014669]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi_9",
+        "nombre": "Ciudad de Montevideo",
+        "categoria": "Plaza",
+        "descripcion": "",
+        "informacion": "Revisar",
+        "audio": "./audio/atlantida/parque_salus.mp3",
+        "imagen": "./images/atlantida/parque_salus.jpg",
+        "orden": 10
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-55.759994,-34.772086]
       }
     }
     
