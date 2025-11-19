@@ -18,11 +18,11 @@
         "informacion": "Revisar",
         "audio": "./audio/atlantida/estacion_trenes.mp3",
         "imagen": "./images/atlantida/estacion_trenes.jpg",
-        "orden": 4
+        "orden": 7
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-55.7563, -34.7701]
+        "coordinates": [-55.76043783902103, -34.77250862153486]
       }
     },
     {
@@ -35,7 +35,7 @@
         "informacion": "Es el corazón social de la ciudad, donde se realizan eventos culturales y encuentros comunitarios. Nombrada en honor a José Gervasio Artigas, el héroe nacional de Uruguay. Es una plaza histórica, fundada junto con el balneario alrededor de 1911. Su principal atractivo es un gran reloj de sol que fue donado por la marina de guerra de Argentina",
         "audio": "./audio/atlantida/plaza_artigas.mp3",
         "imagen": "./images/atlantida/plaza_artigas.jpg",
-        "orden": 7
+        "orden": 3
       },
       "geometry": {
         "type": "Point",
@@ -52,7 +52,7 @@
         "informacion": "Revisar",
         "audio": "./audio/atlantida/playa_atlantida.mp3",
         "imagen": "./images/atlantida/playa_atlantida.jpg",
-        "orden": 2
+        "orden": 4
       },
       "geometry": {
         "type": "Point",
@@ -69,30 +69,14 @@
         "informacion": "Revisar",
         "audio": "./audio/atlantida/rambla_costanera.mp3",
         "imagen": "./images/atlantida/rambla_costanera.jpg",
-        "orden": 3
+        "orden": 1
       },
       "geometry": {
         "type": "Point",
         "coordinates": [-55.76324341350519, -34.769381066837944]
       }
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "poi_5",
-        "nombre": "Plaza España",
-        "categoria": "naturaleza",
-        "descripcion": "Una plaza pequeña y triangular que rinde homenaje a los lazos con España. Se caracteriza por tener una pérgola con glicinas, evocando un estilo de patio andaluz.",
-        "informacion": "Revisar",
-        "audio": "./audio/atlantida/parque_rodo.mp3",
-        "imagen": "./images/atlantida/parque_rodo.jpg",
-        "orden": 6
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-55.7480, -34.7730]
-      }
-    },
+    
       {
       "type": "Feature",
       "properties": {
@@ -119,7 +103,7 @@
         "informacion": "Revisar",
         "audio": "./audio/atlantida/iglesia_san_francisco.mp3",
         "imagen": "./images/atlantida/iglesia_san_francisco.jpg",
-        "orden": 8
+        "orden": 6
       },
       "geometry": {
         "type": "Point",
@@ -153,7 +137,7 @@
         "informacion": "Revisar",
         "audio": "./audio/atlantida/parque_salus.mp3",
         "imagen": "./images/atlantida/parque_salus.jpg",
-        "orden": 10
+        "orden": 2
       },
       "geometry": {
         "type": "Point",
