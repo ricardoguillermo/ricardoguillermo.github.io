@@ -114,17 +114,17 @@
       "type": "Feature",
       "properties": {
         "id": "poi_10",
-        "nombre": "Bouncy Garden",
+        "nombre": "Casino de Atlántida",
         "categoria": "deportivo",
-        "descripcion": "un centro de recreación infantil o salón de fiestas, conocido por sus juegos inflables.",
+        "descripcion": "un centro de recreación y entretenimiento emblemático del balneario.",
         "informacion": "Revisar",
         "audio": "./audio/atlantida/puerto_yates.mp3",
         "imagen": "./images/atlantida/puerto_yates.jpg",
-        "orden": 9
+        "orden": 8
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-55.7550815417141, -34.77319474014669]
+        "coordinates": [-55.762671906350626, -34.77319474014669]
       }
     },
     {

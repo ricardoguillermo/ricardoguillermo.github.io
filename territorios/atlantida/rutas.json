@@ -5,21 +5,19 @@
     "1_2": {
       "desde": "poi_1",
       "hasta": "poi_2",
-      "descripcion": "Desde Plaza Idilio Conde hasta Plaza  José Pedro Varela",
+      "descripcion": "Desde Plaza de la Madre hasta plaza Montevideo",
       "coordenadas": [
-        [-34.772511, -55.760945],
-        [-34.7717, -55.760044],
-        [-34.772079, -55.75949],
-        [-34.771779, -55.759029]
+        [-34.770592, -55.762658],
+        [-34.773202, -55.760383]
       ]
     },
     "2_3": {
       "desde": "poi_2",
       "hasta": "poi_3",
-      "descripcion": "desde Plaza  José Pedro Varela hasta Plaza de la Madre",
+      "descripcion": "desde Plaza Montevideo hasta Plaza Artigas",
       "coordenadas": [
-        [-34.771788, -55.758986],
-        [-34.771074, -55.757903]
+        [ -55.760469,-34.773096],
+        [-55.761412, -34.773836]
         
         
       ]
@@ -27,105 +25,61 @@
     "3_4": {
       "desde": "poi_3",
       "hasta": "poi_4",
-      "descripcion": "Desde Plaza de la Madre hasta Plaza de los Fundadores",
+      "descripcion": "Desde Plaza Artigas hasta plaza varela",
       "coordenadas": [
-        [-34.771074, -55.757871],
-        [-34.770069, -55.756476]
-       
+        [-55.762399, -34.775281],
+        [-55.762128, -34.774666],
+        [-55.761442, -34.774974],
+        [-55.760509, -34.774842]
       ]
     },
     "4_5": {
       "desde": "poi_4",
       "hasta": "poi_5",
-      "descripcion": "Desde Plaza de los Fundadores hasta Plaza El Jardín de Alondra",
+      "descripcion": "Desde Plaza Varela hasta Plaza El Jardín de Alondra",
       "coordenadas": [
-        [-34.769808, -55.755853],
-        [-34.769685, -55.755488],
-        [-34.770531, -55.754737],
-        [-34.771395, -55.754072],
-        [-34.769896, -55.751627],
-        [-34.771694, -55.750318]
+        [-55.760038, -34.774842],
+        [-55.759009, -34.77449],
+        [-55.750707, -34.77234]
+        
        ]
     },
     "5_6": {
       "desde": "poi_5",
       "hasta": "poi_6",
-      "descripcion": "Desde Plaza El Jardín de Alondra hasta Plaza España",
+      "descripcion": "Desde Alondra hasta Plaza Azul",
       "coordenadas": [
-        [-34.771941, -55.749589],
-        [-34.771638, -55.748496],
-        [-34.772661, -55.748153]
+        [-55.750641, -34.772375],
+        [-55.749547, -34.775247],
+        [-55.752443, -34.776885]
+        
       ]
     },
     "6_7": {
       "desde": "poi_6",
       "hasta": "poi_7",
-      "descripción": "Desde Plaza España hasta Plaza Artigas",
+      "descripción": "Desde Plaza Azul hasta Plaza Fundadores",
       "coordenadas": [
-        [-34.77363, -55.747766],
-        [-34.774652, -55.747509],
-        [-34.774476, -55.747187]
-        
+        [-55.752464, -34.776885],
+        [-55.753022, -34.77701],
+        [-55.754181, -34.777257],
+        [-55.755339,-34.777821],
+        [-55.757484, -34.777415]
+
       ]
     },
     "7_8": {
       "desde": "poi_7",
       "hasta": "poi_8",
-      "descripcion": "Desde Plaza Artigas hasta Iglesia San Francisco",
+      "descripcion": "Desde Plaza fundadores hasta Casinos",
       "coordenadas": [
-        [-55.7500, -34.7720],
-        [-55.7490, -34.7730],
-        [-55.7485, -34.7740],
-        [-55.7480, -34.7745],
-        [-55.7475, -34.7750]
-      ]
-    },
-    "8_9": {
-      "desde": "poi_8",
-      "hasta": "poi_9",
-      "descripcion": "Desde Iglesia hasta Museo del Automóvil",
-      "coordenadas": [
-        [-55.7475, -34.7750],
-        [-55.7470, -34.7755],
-        [-55.7465, -34.7758],
-        [-55.7460, -34.7760]
-      ]
-    },
-    "9_10": {
-      "desde": "poi_9",
-      "hasta": "poi_10",
-      "descripcion": "Desde Museo del Automóvil hasta Puerto de Yates",
-      "coordenadas": [
-        [-55.7460, -34.7760],
-        [-55.7450, -34.7740],
-        [-55.7440, -34.7720],
-        [-55.7430, -34.7700],
-        [-55.7420, -34.7680]
-      ]
-    },
-    "10_11": {
-      "desde": "poi_10",
-      "hasta": "poi_11",
-      "descripcion": "Desde Puerto de Yates hasta Faro de Atlántida",
-      "coordenadas": [
-        [-55.7420, -34.7680],
-        [-55.7415, -34.7675],
-        [-55.7410, -34.7672],
-        [-55.7405, -34.7671],
-        [-55.7400, -34.7670]
-      ]
-    },
-    "11_12": {
-      "desde": "poi_11",
-      "hasta": "poi_12",
-      "descripcion": "Desde Faro hasta Casino Atlántida",
-      "coordenadas": [
-        [-55.7400, -34.7670],
-        [-55.7410, -34.7680],
-        [-55.7420, -34.7690],
-        [-55.7430, -34.7695],
-        [-55.7440, -34.7700],
-        [-55.7445, -34.7705]
+        [-34.777389, -55.75847],
+        [-34.777186, -55.76187],
+        [-34.776296, -55.762202],
+        [-34.775574, -55.762878],
+        [-34.775142, -55.76259],
+        [-34.774649, -55.762161],
+        [-34.774376, -55.762729]
       ]
     }
   }
