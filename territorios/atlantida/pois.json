@@ -64,7 +64,7 @@
       "properties": {
         "id": "poi_4",
         "nombre": "Plaza de la Madre",
-        "categoria": "naturaleza",
+        "categoria": "plaza",
         "descripcion": "Ubicada en una rotonda en la entrada del balneario (Av. de la Circunvalación y Av. Artigas). Es muy conocida por su icónico monumento a la madre, una escultura realizada por José P. Marra.",
         "informacion": "Revisar",
         "audio": "./audio/atlantida/rambla_costanera.mp3",
@@ -82,8 +82,8 @@
       "properties": {
         "id": "poi_7",
         "nombre": "Plaza El Jardín de Alondra",
-        "categoria": "deportivo",
-        "descripcion": "Revisar Un espacio verde que funciona como plaza y jardín, ideal para niños.",
+        "categoria": "plaza",
+        "descripcion": "Un espacio verde que funciona como plaza y jardín, ideal para niños y familias.",
         "audio": "./audio/atlantida/club_golf.mp3",
         "imagen": "./images/atlantida/club_golf.jpg",
         "orden": 5
@@ -98,7 +98,7 @@
       "properties": {
         "id": "poi_8",
         "nombre": "Parque Azul",
-        "categoria": "cultural",
+        "categoria": "plaza",
         "descripcion": "Un parque conocido en la zona para el esparcimiento y recreación.",
         "informacion": "Revisar",
         "audio": "./audio/atlantida/iglesia_san_francisco.mp3",
@@ -115,8 +115,8 @@
       "properties": {
         "id": "poi_10",
         "nombre": "Casino de Atlántida",
-        "categoria": "deportivo",
-        "descripcion": "un centro de recreación y entretenimiento emblemático del balneario.",
+        "categoria": "plaza",
+        "descripcion": "Un centro de recreación y entretenimiento emblemático del balneario de Atlántida.",
         "informacion": "Revisar",
         "audio": "./audio/atlantida/puerto_yates.mp3",
         "imagen": "./images/atlantida/puerto_yates.jpg",
@@ -131,9 +131,9 @@
       "type": "Feature",
       "properties": {
         "id": "poi_9",
-        "nombre": "Ciudad de Montevideo",
-        "categoria": "Plaza",
-        "descripcion": "",
+        "nombre": "Plaza Montevideo",
+        "categoria": "plaza",
+        "descripcion": "Plaza central ubicada en el corazón de Atlántida, punto de encuentro y referencia urbana.",
         "informacion": "Revisar",
         "audio": "./audio/atlantida/parque_salus.mp3",
         "imagen": "./images/atlantida/parque_salus.jpg",
@@ -141,7 +141,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-55.759994,-34.772086]
+        "coordinates": [-55.759994, -34.772086]
       }
     }
     
